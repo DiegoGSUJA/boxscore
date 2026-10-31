@@ -1,7 +1,7 @@
 # Boxscore - Contexto del proyecto (documento maestro)
 
 > Léelo junto con `ESTADO_PROYECTO.md` al inicio de cada conversación con una IA.
-> Última actualización: 2026-10-31 · Versión 2 (sustituye a la versión 1 del commit `d7895e2`).
+> Última actualización: 2026-11-01 · Versión 3 (sustituye a la versión 2 del commit `ff2907c`).
 
 ## 0. Cómo leer este documento
 
@@ -161,23 +161,29 @@ flowchart LR
   WEB["React + TypeScript"] --> APP
 ```
 
-## 10. Forma de trabajar [Propuesta, no aprobada]
+## 10. Forma de trabajar
 
-Ningún detalle de esta sección está aprobado:
-- GitHub como única fuente de verdad: `/docs` para lo estable, issues para el trabajo y GitHub Projects solo como vista.
+### 10.1 Documentación y copias [Diego, 2026-11-01]
+
+- GitHub (`/docs` del repo `DiegoGSUJA/boxscore`) es la fuente de referencia para la documentación aprobada y el estado registrado del proyecto.
+- Estar en GitHub no convierte una hipótesis o propuesta en decisión aprobada: cada contenido conserva su etiqueta.
+- Los archivos `PROYECTO_CONTEXTO.md` y `ESTADO_PROYECTO.md` del Project de Perplexity son copias de respaldo. Si difieren de GitHub, prevalece el repositorio.
+- No hay sincronización automática ni actualizaciones obligatorias al terminar cada sesión. Los documentos se actualizan solo cuando Diego lo solicita, revisando antes el texto.
+- Cuando Diego autorice un cambio en cualquiera de estos dos documentos, la IA indicará si las copias del Project quedan desactualizadas. Sustituirlas requiere autorización expresa, que puede darse en la misma petición.
+- Si no se puede consultar GitHub, se usan las copias del Project, avisando de que su vigencia no está comprobada e indicando el commit de referencia si se conoce.
+
+### 10.2 Resto de la organización [Propuesta, no aprobada]
+
+- Issues para el trabajo y GitHub Projects solo como vista.
 - Campo "Horas reales" en las issues.
 - Trazabilidad necesidad → requisito → issue → PR → prueba.
 - Cambios de alcance mediante issues con la etiqueta `cambio-alcance`.
-- Actualizar `ESTADO_PROYECTO.md` al cerrar cada sesión.
 - Reglas de uso de IA.
-
-Hasta que se decida el procedimiento, los documentos se actualizan **solo cuando Diego lo solicita**, revisando antes el texto.
 
 ## 11. Pendientes
 
 - Revisar **una a una** las correcciones C1-C18 y E1-E7 propuestas en `PLAN_MAESTRO.md`. **No se aplican en bloque.** Este documento refleja parcialmente algunos de sus temas (ver `ESTADO_PROYECTO.md`, sección "Correcciones reflejadas parcialmente"). Ninguna está resuelta del todo.
 - Decidir si `VIABILIDAD_DATOS.md`, `PLAN_MAESTRO.md` y `registro_pruebas.json` (generados con IA) se guardan en `/docs`. **Todavía no están disponibles en el repo.**
-- U4: revisar los archivos del Project de Perplexity antes de eliminar nada.
 - Guion de entrevista y búsqueda de participantes.
 - Comprobación temprana de datos reales y de las condiciones de uso.
 - Definición de "terminado" e hitos propios.
@@ -205,7 +211,7 @@ Esta tabla **no es una decisión aprobada**. Fusiona los riesgos de la versión 
 > - A.2 (v1 §7) · propuesta
 > - A.3 (v1 §8) · pendiente de C17
 > - A.4 (v1 §9) · pendiente de C18
-> - A.5 (v1 §10) · histórico; pendiente de decidir el procedimiento (sección 10)
+> - A.5 (v1 §10) · histórico; sustituido por la sección 10.1
 > - A.6 (v1 §2) y A.7 (v1 §3) · ideas iniciales de producto y fases; **no son requisitos**. Lo elegido está en las secciones 3 y 5.
 >
 > Las secciones v1 §1, §4, §6 y §11 se sustituyen por las secciones 1, 7, 8 y 12 de esta versión. Su texto sigue disponible en el historial de Git (commit `d7895e2`).

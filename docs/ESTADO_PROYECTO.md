@@ -1,13 +1,13 @@
 # ESTADO_PROYECTO - Histórico de avance (Boxscore)
 
-> Se actualiza **cuando Diego lo solicita**, revisando antes el texto, y solo con lo que se pueda comprobar. El procedimiento definitivo está pendiente de decidir. Una IA nueva debe leerlo junto a `PROYECTO_CONTEXTO.md`.
+> Se actualiza **cuando Diego lo solicita**, revisando antes el texto, y solo con lo que se pueda comprobar. Procedimiento: ver `PROYECTO_CONTEXTO.md` §10.1. Una IA nueva debe leerlo junto a `PROYECTO_CONTEXTO.md`.
 > Etiquetas: **[Diego]** decisión provisional · **[Propuesta]** sin aprobar · **[Hecho]** verificado · **[Pendiente]**.
 
 ## Resumen actual
 
 - **Fase actual:** 0 - Planificación. Decisiones provisionales tomadas; todavía no se ha implementado la aplicación.
-- **Última sesión:** 2026-10-31.
-- **Próximo paso:** revisar y aprobar los textos de U1-U3. Después, revisar una a una las correcciones C1-C18 y E1-E7.
+- **Última sesión:** 2026-11-01.
+- **Próximo paso:** corrección mínima del README. Después, revisar una a una las correcciones C1-C18 y E1-E7.
 - **Recordatorios:**
   - **No están aprobados:** las **fuentes y bibliotecas de acceso a datos**, los **proveedores de datos** y el **alojamiento**. El stack elegido (Java + Spring Boot, PostgreSQL, React + TypeScript) es una decisión provisional aparte.
   - Los bloques del MVP son candidatos.
@@ -23,7 +23,8 @@
 | 2026-10-31 | Nombre: Boxscore (repo `boxscore`) | [Diego] Vigente | Simple, sin marcas NBA |
 | 2026-10-31 | Herramientas: VS Code + GitHub Desktop; interfaz gráfica antes que terminal | [Diego] Vigente | Preferencia personal |
 | 2026-10-31 | Docs en GitHub `/docs` (Markdown + Mermaid) | [Diego] Vigente | Docs-as-code |
-| 2026-10-31 | Planificación en GitHub Projects y GitHub como única fuente de verdad | [Propuesta] Pendiente | Forma de trabajar sin aprobar |
+| 2026-11-01 | GitHub (`/docs`) es la fuente de referencia de la documentación aprobada y del estado registrado. Las copias del Project son respaldo y, si difieren, prevalece el repo. Sin sincronización automática ni actualizaciones obligatorias al terminar cada sesión | [Diego] Vigente | Ver `PROYECTO_CONTEXTO.md` §10.1. Estar en GitHub no aprueba ninguna propuesta |
+| 2026-10-31 | Resto de la organización: issues, GitHub Projects, campo de horas, cambios de alcance, uso de IA | [Propuesta] Pendiente | Ver `PROYECTO_CONTEXTO.md` §10.2 |
 | 2026-10-31 | ~~Datos: balldontlie (principal) + nba_api (complemento)~~ | **Sustituida** | Era una propuesta de IA. Según la [documentación de balldontlie](https://docs.balldontlie.io/) (consultada el 2026-10-31), el plan gratuito no incluye estadísticas por partido. No hay ninguna fuente de datos aprobada |
 | 2026-10-31 | ~~Ingestor en Python, backend en Java/Spring Boot~~ | **Sustituida** | Python queda condicionado a la fuente; no hay importador separado aprobado |
 | 2026-10-31 | Proyecto personal de formación, sin fecha obligatoria ni supervisión académica | [Diego] Provisional | Objetivo: recorrer el ciclo completo |
@@ -51,22 +52,24 @@
 - [x] Crear el Project de Perplexity "Boxscore" (evidencia: el Project existe y tiene instrucciones, comprobado el 2026-10-31).
 - [x] Generar con IA los borradores `VIABILIDAD_DATOS.md` y `PLAN_MAESTRO.md` (2026-10-31). Son borradores sin aprobar y **todavía no están disponibles en el repo**.
 - [x] Tomar las decisiones provisionales de planificación (tabla anterior).
+- [x] Revisar U1-U2 y aplicarlos en GitHub (evidencia: commit `ff2907c`, 2026-10-31 22:59 UTC, que solo modifica `docs/ESTADO_PROYECTO.md` y `docs/PROYECTO_CONTEXTO.md`).
+- [x] Revisar U3 y aplicarlo: descripción e instrucciones del Project sustituidas (evidencia: ambos campos se releyeron tras guardarlos y coinciden con U3; fecha de modificación registrada en el Project: 2026-10-31 22:59 UTC). **Esta evidencia está en el Project, no en GitHub.**
+- [x] U4: inventario de los archivos del Project (2 archivos, idénticos a los del commit `d7895e2`) y sustitución por las versiones de `ff2907c` (evidencia: versión `59c4f96` del repositorio de archivos del Project, 2026-10-31 23:03 UTC, comparada byte a byte con `ff2907c`). **Esta evidencia está en el Project, no en GitHub. No hay aprobada ninguna eliminación futura.**
+- [x] Decidir el procedimiento de documentación y copias (2026-11-01; ver `PROYECTO_CONTEXTO.md` §10.1).
 
 ## En curso
 
-- [ ] Revisar los textos de U1 (este archivo), U2 (`PROYECTO_CONTEXTO.md`) y U3 (descripción e instrucciones del Project de Perplexity).
+- [ ] Aplicación del procedimiento de documentación y copias: contenido revisado y aprobado; pendiente de autorización y ejecución.
 
 ## Pendiente (orden propuesto, sin aprobar)
 
-1. [ ] Aprobar o corregir U1-U3 y aplicarlos.
-2. [ ] U4: revisar qué archivos tiene el Project de Perplexity, qué contienen y si están conservados en GitHub. **No se borra nada sin autorización.**
-3. [ ] Decidir si `VIABILIDAD_DATOS.md` y `PLAN_MAESTRO.md` se guardan en `/docs` como borradores.
-4. [ ] Revisar una a una las correcciones C1-C18 y E1-E7, sin aplicarlas en bloque.
-5. [ ] Revisar la forma de trabajar propuesta (issues, Projects, campo de horas, cambios de alcance, uso de IA).
-6. [ ] Corregir el README del repo (dice "con cuentas de usuario (proyecto académico)").
-7. [ ] Guion de entrevista y búsqueda de participantes.
-8. [ ] Comprobación temprana de datos reales: viabilidad técnica y condiciones de uso. Será la primera tarea de ejecución.
-9. [ ] Visión, requisitos, UX, arquitectura, seguridad, pruebas, presupuesto y operación (según la hoja de ruta, pendiente de aprobar).
+1. [ ] Corregir el README del repo (dice "con cuentas de usuario (proyecto académico)").
+2. [ ] Decidir si `VIABILIDAD_DATOS.md` y `PLAN_MAESTRO.md` se guardan en `/docs` como borradores.
+3. [ ] Revisar una a una las correcciones C1-C18 y E1-E7, sin aplicarlas en bloque.
+4. [ ] Revisar el resto de la forma de trabajar propuesta (`PROYECTO_CONTEXTO.md` §10.2).
+5. [ ] Guion de entrevista y búsqueda de participantes.
+6. [ ] Comprobación temprana de datos reales: viabilidad técnica y condiciones de uso. Será la primera tarea de ejecución.
+7. [ ] Visión, requisitos, UX, arquitectura, seguridad, pruebas, presupuesto y operación (según la hoja de ruta, pendiente de aprobar).
 
 ## Problemas abiertos / preguntas
 
@@ -99,3 +102,5 @@
 | 2026-10-31 | Elección de idea, fuentes de datos, stack y nombre; repo creado y clonado | Documento maestro y entorno listos |
 | 2026-10-31 | Análisis de viabilidad de datos y plan maestro (IA); 3 pruebas con nba_api desde un sandbox en la nube | Borradores sin aprobar. Pruebas fallidas y no concluyentes (evidencia: `registro_pruebas.json`, 2026-10-31 22:14 UTC; **todavía no disponible en el repo**) |
 | 2026-10-31 | Decisiones provisionales de marco, público, validación, alcance, exposición, datos y tecnologías | Resumen consolidado aceptado como borrador de referencia; U1-U3 preparados para revisión |
+| 2026-10-31 | Revisión y aplicación de U1-U3 | GitHub: commit `ff2907c` (U1-U2). Project: descripción e instrucciones actualizadas (U3) |
+| 2026-11-01 | Inventario y sustitución de U4; decisión sobre documentación y copias | Project: copias sustituidas (versión `59c4f96` de sus archivos). §10.1 aprobado; el resto de la organización sigue como propuesta (§10.2) |
