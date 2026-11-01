@@ -2,202 +2,214 @@
 
 | Control | Valor |
 |---|---|
-| Versión | 0.5 |
+| Versión | 1.0 |
 | Fecha | 01/11/2026 |
 | Responsable | Diego Gómez Sánchez — responsable del proyecto y desarrollador |
-| Estado | Alcance y comportamientos indicados como confirmados; especificación técnica y viabilidad de datos pendientes |
+| Estado | Línea base funcional confirmada; diseño, verificación e integración de datos pendientes |
 
-## 1. Propósito y trazabilidad
+## 1. Propósito y referencias
 
-Especificar el incremento de consulta diaria de partidos finalizados y detalle de un encuentro. Proyecto formativo de desarrollo unipersonal.
+Especificar el incremento de consulta diaria de partidos finalizados y detalle de un encuentro. Boxscore es un proyecto formativo de desarrollo unipersonal.
 
 Referencias:
-- Documentos anteriores: commit `66d8241fb20e37ea0236bc01c2c911577f0591db`, rutas `docs/REQUISITOS.md`, `docs/PROYECTO_CONTEXTO.md` y `docs/ESTADO_PROYECTO.md`.
-- Fuente de aprobación: confirmaciones expresas del responsable del proyecto en la sesión del 01/11/2026, sobre núcleo, competiciones, prórrogas, participación, estados de consulta, fechas y criterios de terminado. El registro de origen está en la conversación; este documento lo consolida. No constituye validación con usuarios externos.
+- Versión anterior: commit `10491535f240c3a0d735059c91247bf61a3e3194`, ruta `docs/REQUISITOS.md` (0.5).
+- Aprobaciones: confirmaciones expresas del responsable en la sesión del 01/11/2026 sobre núcleo, competiciones, prórrogas, participación, estados de consulta, fechas y terminado; ratificación final de contenido del listado, campos individuales, competición, consulta bajo demanda y claridad/accesibilidad. El registro de origen es la conversación, consolidada aquí; no representa validación externa.
 - Seguimiento: issue #1, «Concretar y aprobar los requisitos del primer incremento».
 
-Confirmado significa decisión de producto, no implementación, prueba superada ni aprobación de una fuente. Pendiente identifica detalles no resueltos. El contenido heredado no confirmado se conserva como propuesta.
+Confirmado significa decisión de producto. No acredita implementación, prueba superada, cobertura técnica ni permiso de uso. Los detalles técnicos abiertos conservan estado pendiente; las ampliaciones no confirmadas siguen siendo propuestas.
 
 ## 2. Necesidad y objetivos
 
-N-01: facilitar la consulta de resultados y estadísticas mediante una interfaz de listado y detalle. La utilidad para participantes externos sigue pendiente de contraste.
+N-01: facilitar resultados y estadísticas mediante una interfaz de listado y detalle. Su utilidad con participantes externos sigue pendiente de contraste.
 
-OBJ-01: seleccionar un día, localizar un encuentro finalizado, consultar su detalle y volver al listado.
+OBJ-01: seleccionar día, localizar un encuentro finalizado, consultar su detalle y volver al listado.
 
-OBJ-02: practicar trazabilidad entre requisitos, interacción, arquitectura, datos, implementación y pruebas sin añadir funciones únicamente para justificar una tecnología.
+OBJ-02: practicar trazabilidad entre requisitos, interacción, arquitectura, datos, implementación y pruebas, sin añadir funciones solo para justificar tecnologías.
 
 ## 3. Restricciones registradas
 
-Presupuesto de 0 euros, prioridad local y demo privada opcional y condicionada. Sin fecha obligatoria ni disponibilidad semanal confirmada. Stack provisional: Java con Spring Boot, PostgreSQL y React con TypeScript; Docker Compose y GitHub Actions prioritarios para aprendizaje. Fuentes, bibliotecas de acceso a datos, proveedores, versiones y alojamiento siguen sin aprobar.
+Presupuesto de 0 euros, prioridad local y demo privada opcional y condicionada. Sin fecha obligatoria ni disponibilidad semanal confirmada. Stack provisional: Java con Spring Boot, PostgreSQL y React con TypeScript; Docker Compose y GitHub Actions prioritarios para aprendizaje; Kubernetes después del MVP.
 
-El uso local o privado no constituye por sí solo permiso para utilizar datos o recursos de terceros.
+Fuentes, bibliotecas de acceso, proveedores, versiones y alojamiento no están aprobados. El uso local o privado no constituye por sí solo permiso para datos o recursos de terceros.
 
-## 4. Alcance confirmado
+## 4. Alcance
 
-### 4.1 Incluido
+### 4.1 Confirmado
 
-Partidos finalizados de la temporada actual correspondientes a temporada regular, NBA Cup incluida su final, play-in y playoffs incluidas las Finales. Consulta diaria y detalle de encuentro con resultado, parciales y estadísticas individuales de ambos equipos para el partido completo.
+Partidos finalizados de la temporada actual: temporada regular, NBA Cup incluida su final, play-in y playoffs incluidas las Finales. Listado diario con selección de fecha y detalle con resultado, parciales y estadísticas individuales de ambos equipos para el partido completo.
 
-No duplicar un mismo encuentro por estar asociado a más de una competición o fase. La correspondencia concreta de categorías, identificadores y estados de la fuente queda pendiente.
+Un encuentro no se duplica por tener etiquetas solapadas. Las categorías, estados e identidad de la fuente requieren una correspondencia técnica documentada.
 
-### 4.2 Excluido del primer incremento
+Fuera del primer incremento: pretemporada, All-Star, Summer League, temporadas anteriores, cuentas, favoritos, directos, noticias, gráficas, porcentajes y estadísticas avanzadas. Las estadísticas individuales no se desglosan por periodo. Los logos no son necesarios para identificar equipos y no quedan autorizados.
 
-Pretemporada, All-Star, Summer League y temporadas anteriores. Cuentas, favoritos, directos, noticias y gráficas quedan fuera del núcleo confirmado. Las restantes exclusiones del borrador anterior se mantienen como propuesta: vistas semanales o mensuales, filtros avanzados, vídeos, alertas e importación periódica. No son descartes permanentes.
+### 4.2 Propuestas heredadas y ampliaciones
 
-Las hipótesis generales del portal se conservan como contexto futuro, no como compromisos de este incremento.
+Vistas semanales o mensuales, filtros avanzados, vídeos y alertas no forman parte de las funciones descritas en esta línea base; cualquier incorporación requiere revisar el alcance. No se aprueba importación periódica: el comportamiento confirmado es consulta bajo demanda. Caché y almacenamiento se resolverán en diseño y según condiciones de uso.
 
-## 5. Requisitos funcionales
+Las hipótesis generales del portal se conservan para evolución futura, no como compromisos adicionales.
 
-Todos se relacionan con N-01 y OBJ-01. Se conserva la numeración anterior.
+## 5. Requisitos funcionales confirmados
 
-| ID | Requisito | Estado |
-|---|---|---|
-| RF-01 | Al abrir, mostrar el último día con partidos finalizados de la temporada actual, su fecha y listado. | Confirmado |
-| RF-02 | Permitir seleccionar cualquier día de esa temporada hasta el día actual y mostrar únicamente sus partidos finalizados. | Confirmado |
-| RF-03 | Identificar ambos equipos y mostrar el resultado final en cada elemento del listado. | Especificación propuesta del núcleo; pendiente de ratificación detallada |
-| RF-04 | Permitir abrir el detalle del encuentro seleccionado. | Confirmado |
-| RF-05 | Mostrar resultado y parciales de ambos equipos con cuatro columnas fijas de cuartos, una por cada prórroga disputada y el total. | Confirmado |
-| RF-06 | Mostrar competición o fase mediante una correspondencia documentada, sin inferir categorías sin respaldo. | Propuesto; categorías técnicas pendientes |
-| RF-07 | Mostrar estadísticas individuales de ambos equipos para el partido completo. | Alcance confirmado; campos concretos propuestos en el apartado 6 |
-| RF-08 | Consultar listado y detalle bajo demanda, sin descargar anticipadamente todos los detalles. | Propuesto; caché y persistencia pendientes |
-| RF-09 | Conservar la fecha al volver del detalle al listado. | Confirmado |
-| RF-10 | Mantener el día seleccionado y mostrar «No hay partidos finalizados para este día» si no contiene resultados. No saltar automáticamente a otra fecha. | Confirmado |
-| RF-11 | Diferenciar error de consulta y ausencia de partidos. Mostrar reintento; conservar la fecha del listado y permitir volver desde un detalle fallido. | Confirmado |
-| RF-12 | Distinguir datos ausentes, ceros válidos y no participación según el apartado 7. | Confirmado |
-| RF-13 | Si todavía no existen partidos finalizados en la temporada, informar sin buscar temporadas anteriores. La búsqueda no será indefinida. | Comportamiento confirmado; mecanismo y límites técnicos pendientes |
-| RF-14 | Mostrar «Cargando partidos…» o «Cargando detalle…» durante la consulta, sin presentar datos anteriores como los nuevos. | Confirmado |
-| RF-15 | Si el detalle es incompleto, mostrar lo disponible y advertir de la información incompleta. | Confirmado |
+Todos se relacionan con N-01 y OBJ-01. Se conserva la numeración anterior. Las correspondencias técnicas pendientes no cambian la aprobación del comportamiento esperado.
 
-## 6. Estadísticas individuales
+| ID | Requisito |
+|---|---|
+| RF-01 | Al abrir, mostrar el último día con partidos finalizados de la temporada actual, su fecha y listado. |
+| RF-02 | Permitir seleccionar cualquier día de esa temporada hasta el día actual y consultar únicamente sus partidos finalizados. |
+| RF-03 | Cada partido del listado mostrará el nombre de ambos equipos diferenciando local y visitante, resultado final y acción `Ver detalle`. La fecha consultada permanecerá visible sobre el listado. |
+| RF-04 | Abrir el detalle del encuentro seleccionado. |
+| RF-05 | Mostrar resultado y parciales de ambos equipos: cuatro columnas fijas de cuartos, una por cada prórroga disputada y el total. |
+| RF-06 | Mostrar competición o fase disponible mediante etiquetas en español y correspondencia documentada, sin inventar categorías ni duplicar encuentros por solapamiento. |
+| RF-07 | Mostrar una tabla de estadísticas individuales por equipo con los campos del apartado 6, para el partido completo. |
+| RF-08 | Consultar listado al abrir o cambiar defecha y solicitar detalle al seleccionar un partido, sin descargar anticipadamente todos los detalles de la temporada. |
+| RF-09 | Volver del detalle al listado conservando la fecha seleccionada. |
+| RF-10 | Mantener el día elegido y mostrar «No hay partidos finalizados para este día» si no hay resultados, sin saltar automáticamente a otro día. |
+| RF-11 | Diferenciar error y ausencia de partidos. Permitir reintentar la consulta fallida; conservar fecha y permitir volver al listado desde un detalle fallido. |
+| RF-12 | Distinguir datos ausentes, ceros válidos y no participación según el apartado 7. |
+| RF-13 | Si todavía no existen partidos finalizados en la temporada, informar sin buscar temporadas anteriores ni realizar búsquedas indefinidas. |
+| RF-14 | Mostrar «Cargando partidos…» o «Cargando detalle…» durante la consulta, sin presentar datos anteriores como si fueran los nuevos. |
+| RF-15 | Si el detalle llega incompleto, mostrar los datos disponibles y advertir de la información incompleta. |
 
-El alcance confirmado comprende estadísticas del partido completo, sin desglose individual por periodo.
+## 6. Campos individuales confirmados
 
-Se conserva como propuesta del borrador la siguiente selección de campos: minutos, puntos, rebotes totales, asistencias, robos, tapones, pérdidas, tiros de campo anotados e intentados, triples anotados e intentados y tiros libres anotados e intentados. La aprobación del núcleo no se interpreta como ratificación individual de esta selección; debe confirmarse antes de cerrar RF-07.
+| Grupo | Campos |
+|---|---|
+| Identificación | Nombre del jugador. |
+| Participación | Minutos. |
+| Estadísticas | Puntos, rebotes totales, asistencias, robos, tapones y pérdidas. |
+| Tiros | Tiros de campo, triples y tiros libres: anotados e intentados. |
 
-## 7. Reglas confirmadas y detalles pendientes
+Una tabla por equipo. Sin porcentajes ni estadísticas avanzadas en este incremento. Aplicar las reglas de ausencias y no participación; no inferir valores para completar campos.
 
-| ID | Regla | Estado |
-|---|---|---|
-| RG-01 | Asignar el día por la fecha de inicio convertida a `Europe/Madrid`, no por la fecha estadounidense ni por la finalización. | Confirmado |
-| RG-02 | Incluir únicamente partidos finalizados. | Confirmado; correspondencia con estados de fuente pendiente |
-| RG-03 | No interpretar una etiqueta vacía como una competición concreta. | Propuesto |
-| RG-04 | Cuartos `1.º`, `2.º`, `3.º`, `4.º`; prórrogas `PR1`, `PR2`, etc.; última columna `Total`. Si falta un parcial, mostrar `No disponible`, no cero. | Confirmado |
-| RG-05 | La búsqueda inicial se limita a la temporada actual. Definir su identificación, cobertura y límite de consultas antes de implementar. | Límite de producto confirmado; solución técnica pendiente |
-| RG-06 | Si la fuente indica expresamente no participación, mostrar al jugador al final de su equipo como `No participó`, sin rellenar estadísticas con ceros. | Confirmado |
-| RG-07 | Mostrar el motivo recibido únicamente con una traducción revisada; no inferir lesiones ni otras causas. | Confirmado |
-| RG-08 | Estadística ausente: `—`, con aclaración «Dato no disponible». Cero válido: `0`. Si el jugador no aparece en los datos, no añadirlo ni suponer no participación. | Confirmado |
-| RG-09 | Mantener un único encuentro aunque sus etiquetas de competición o fase se solapen. | Criterio de alcance confirmado; identidad y correspondencia pendientes |
+## 7. Reglas confirmadas
 
-Errores confirmados: «No se han podido cargar los partidos» y «No se ha podido cargar el detalle», con botón `Reintentar`. El error nunca se presenta como ausencia de partidos.
+| ID | Regla |
+|---|---|
+| RG-01 | Asignar el día por la fecha de inicio convertida a `Europe/Madrid`, no por la fecha estadounidense ni por la finalización. |
+| RG-02 | Incluir solo partidos finalizados; documentar su correspondencia con estados de la fuente antes de integrarla. |
+| RG-03 | No interpretar una etiqueta vacía como una competición concreta. |
+| RG-04 | Cuartos `1.º`, `2.º`, `3.º`, `4.º`; prórrogas `PR1`, `PR2`, etc.; columna final `Total`. Parcial ausente: `No disponible`, no cero. |
+| RG-05 | Limitar la búsqueda inicial a la temporada actual. Su identificación y el límite de consultas son detalles técnicos pendientes. |
+| RG-06 | Si la fuente indica expresamente no participación, mostrar al jugador al final de su equipo como `No participó`, sin rellenar estadísticas con ceros. |
+| RG-07 | Mostrar motivos recibidos solo con una traducción revisada; no inferir lesiones ni otras causas. |
+| RG-08 | Estadística ausente: `—`, con aclaración «Dato no disponible». Cero válido: `0`. Si un jugador no aparece en los datos, no añadirlo ni suponer no participación. |
+| RG-09 | Mantener un único encuentro aunque sus etiquetas de competición o fase se solapen. Documentar identidad y correspondencias técnicas. |
 
-## 8. Calidad
+Errores: «No se han podido cargar los partidos» y «No se ha podido cargar el detalle», con botón `Reintentar`. Nunca presentar un error como ausencia de partidos.
 
-| ID | Criterio | Estado |
-|---|---|---|
-| RC-01 | Completar listado → detalle → listado mediante teclado, con foco visible. | Confirmado como criterio de terminado |
-| RC-02 | No depender exclusivamente de colores o imágenes para comunicar información. | Confirmado como criterio de terminado |
-| RC-03 | Estructura, tablas, controles y mensajes comprensibles mediante tecnologías de asistencia. | Propuesto; procedimiento detallado pendiente |
-| RC-04 | Fecha y encuentro inequívocos durante la navegación. | Propuesto |
+## 8. Calidad confirmada y límites
 
-No se declara cumplimiento completo de accesibilidad ni conformidad WCAG. Rendimiento y disponibilidad carecen todavía de objetivos cuantitativos aprobados.
+| ID | Requisito |
+|---|---|
+| RC-01 | Completar listado → detalle → listado mediante teclado, con foco visible. |
+| RC-02 | No depender exclusivamente de colores o imágenes para comunicar información. |
+| RC-03 | Proporcionar controles con nombres comprensibles, tablas con encabezados identificables y estructura y mensajes preparados para tecnologías de asistencia. |
+| RC-04 | Mantener fecha y partido claramente identificados durante la navegación. |
+
+El procedimiento detallado de evaluación mediante tecnologías de asistencia queda pendiente. No se declara conformidad WCAG ni accesibilidad completa. Rendimiento y disponibilidad no tienen todavía objetivos cuantitativos aprobados.
 
 ## 9. CU-01 · Consultar un partido finalizado
 
-Actor: persona que consulta Boxscore. No representa un participante entrevistado. Resultado de éxito: consulta del detalle del encuentro seleccionado.
+Actor: persona que consulta Boxscore, no participante externo acreditado. Resultado de éxito: detalle del encuentro seleccionado.
 
 1. Abrir la aplicación.
-2. Localizar el último día con partidos finalizados de la temporada actual y mostrar su listado.
-3. Mantener la fecha o seleccionar otra dentro del intervalo permitido.
-4. Seleccionar un partido y consultar su detalle.
+2. Localizar el último día con finalizados de la temporada actual y mostrar fecha y listado.
+3. Mantener fecha o seleccionar otra dentro del intervalo permitido.
+4. Seleccionar un partido y consultar detalle.
 5. Volver al listado conservando la fecha.
 
-Alternativas: carga visible; día vacío conservado; error con reintento; detalle incompleto con aviso; temporada sin partidos finalizados sin búsqueda de años anteriores.
+Alternativas: carga visible, día vacío conservado, error con reintento, detalle incompleto con aviso y temporada sin finalizados sin buscar años anteriores.
 
-Diagrama conceptual de flujo; no es UML formal ni evidencia de implementación:
+Diagrama conceptual de flujo, no UML formal ni evidencia de implementación:
 
 ```mermaid
 flowchart TD
-    A[Abrir aplicación] --> B[Buscar último día en la temporada actual]
+    A[Abrir aplicación] --> B[Buscar último día en temporada actual]
     B --> C{Resultado}
     C -->|Con partidos| D[Mostrar fecha y listado]
-    C -->|Temporada sin partidos finalizados| E[Informar sin buscar años anteriores]
-    C -->|Error| F[Informar y permitir reintento]
+    C -->|Sin finalizados en temporada| E[Informar sin buscar años anteriores]
+    C -->|Error| F[Mostrar error de listado]
     D --> G{Acción}
     G -->|Cambiar fecha| H[Consultar fecha seleccionada]
     H --> I{Resultado}
     I -->|Con partidos| D
     I -->|Día vacío| J[Conservar fecha e informar]
     I -->|Error| F
-    J -->|Elegir otro día| H
-    G -->|Seleccionar encuentro| K[Consultar detalle]
+    J -->|Elegir día| H
+    F -->|Reintentar| R[Repetir consulta de listado fallida]
+    R --> C
+    G -->|Ver detalle| K[Consultar detalle]
     K --> L{Resultado}
     L -->|Completo| M[Mostrar detalle]
-    L -->|Incompleto| N[Mostrar datos disponibles y aviso]
-    L -->|Error| O[Informar y permitir reintento]
+    L -->|Incompleto| N[Mostrar disponibles y aviso]
+    L -->|Error| O[Mostrar error de detalle]
     O -->|Reintentar| K
     M -->|Volver| D
     N -->|Volver| D
     O -->|Volver| D
 ```
 
+Los estados de carga acompañan cada consulta. La fecha y el contexto de la consulta fallida se conservan al reintentar.
+
 ## 10. Condiciones de aceptación
 
-Comprobaciones futuras. Ninguna se declara ejecutada o superada. La numeración mantiene la trazabilidad anterior.
+Comprobaciones futuras, no pruebas ejecutadas o superadas. Se conserva la numeración.
 
 | ID | Comprobación | Relación |
 |---|---|---|
-| CA-01 | Abrir un conjunto conocido y localizar el último día con encuentros finalizados según España peninsular. | RF-01, RG-01, RG-05 |
-| CA-02 | Seleccionar día y comprobar pertenencia por inicio local, con casos de medianoche y cambios horarios; no admitir fechas fuera del intervalo permitido. | RF-02, RG-01 |
-| CA-03 | Seleccionar un encuentro abre ese mismo detalle; la presentación exacta de listado se ratificará con RF-03. | RF-03, RF-04 |
-| CA-04 | Verificar partido sin prórroga, con una y con varias; cuartos, columnas PR, total y parcial ausente. | RF-05, RG-04 |
-| CA-05 | No duplicar encuentros por etiquetas solapadas; no inventar una categoría cuando falta. Completar correspondencia técnica antes de cerrar la prueba. | RF-06, RG-03, RG-09 |
-| CA-06 | Verificar estadísticas de ambos equipos, no participación, motivo traducido, jugador no recibido, ceros y ausencias. Selección final de campos pendiente. | RF-07, RF-12, RG-06 a RG-08 |
-| CA-07 | Verificar que el listado no solicita anticipadamente todos los detalles. | RF-08; pendiente de aprobación de este requisito |
-| CA-08 | Volver desde detalle o error conserva la fecha. | RF-09, RF-11 |
-| CA-09 | Distinguir día vacío y fallo; reintentar la consulta fallida sin cambiar la fecha. | RF-10, RF-11 |
-| CA-10 | Diferenciar `0`, `—` y `No disponible` según tipo de dato. | RF-12, RG-04, RG-08 |
-| CA-11 | Temporada sin partidos finalizados: informar, finalizar búsqueda y no consultar temporadas anteriores. | RF-13, RG-05 |
-| CA-12 | Completar recorrido con teclado y foco visible, sin dependencia exclusiva de colores o imágenes. | RC-01, RC-02 |
-| CA-13 | Fecha e identidad del encuentro inequívocas. | RC-04; propuesto |
-| CA-14 | Mostrar carga correcta sin presentar datos anteriores como resultado nuevo. | RF-14 |
-| CA-15 | Mostrar detalle parcial con aviso, conservando los valores disponibles. | RF-15 |
-| CA-16 | Comprobar inclusión de todas las fases confirmadas y exclusión de las competiciones descartadas, con cobertura de fuente documentada. | Apartado 4 |
+| CA-01 | Abrir un conjunto conocido y localizar último día con finalizados según España peninsular. | RF-01, RG-01, RG-05 |
+| CA-02 | Comprobar selección e inicio local con medianoche y cambios horarios; no admitir fechas fuera del intervalo. | RF-02, RG-01 |
+| CA-03 | Mostrar equipos local/visitante, resultado, fecha y acción; abrir el mismo encuentro seleccionado. | RF-03, RF-04 |
+| CA-04 | Comprobar partido sin prórroga, con una y con varias; columnas, total y parcial ausente. | RF-05, RG-04 |
+| CA-05 | Etiquetas en español según correspondencia, sin categoría inventada ni duplicación por solapamiento. | RF-06, RG-03, RG-09 |
+| CA-06 | Tablas de ambos equipos con campos del apartado 6; no participación, motivos, jugador no recibido, cero y ausencia diferenciados. | RF-07, RF-12, RG-06 a RG-08 |
+| CA-07 | Listado sin descarga anticipada de todos los detalles; selección solicita el detalle del partido. | RF-08 |
+| CA-08 | Volver desde detalle o error conserva fecha. | RF-09, RF-11 |
+| CA-09 | Día vacío y error son distintos; reintentar conserva contexto. | RF-10, RF-11 |
+| CA-10 | Diferenciar `0`, `—` y `No disponible` según dato. | RF-12, RG-04, RG-08 |
+| CA-11 | Temporada sin finalizados: informar, terminar búsqueda y no consultar temporadas anteriores. | RF-13, RG-05 |
+| CA-12 | Recorrido con teclado, foco visible e información no dependiente solo de color o imágenes. | RC-01, RC-02 |
+| CA-13 | Fecha y encuentro inequívocos durante navegación. | RC-04 |
+| CA-14 | Carga correcta sin mostrar resultados anteriores como nuevos. | RF-14 |
+| CA-15 | Detalle parcial conserva disponibles y muestra aviso. | RF-15 |
+| CA-16 | Cobertura de todas las fases incluidas, exclusiones correctas y ausencia de duplicados. | Apartado 4 |
+| CA-17 | Controles nombrados, encabezados de tabla identificables, estructura y mensajes evaluados con el procedimiento de asistencia que se defina. | RC-03 |
 
-Los criterios que dependan de cobertura o de categorías reales requerirán evidencia de integración. Los escenarios controlados pueden usar datos ficticios identificados, sin acreditar por ello cobertura real.
+CA-05, CA-16 y otros casos de datos reales requieren verificar la cobertura y correspondencias de la integración. Datos ficticios identificados permiten escenarios controlados, no acreditar cobertura real. Completar el procedimiento de CA-17 y sus evidencias antes de declarar verificada esa condición.
 
-## 11. Criterios de terminado confirmados
+## 11. Terminado confirmado
 
-- Recorrido de listado, fecha, detalle y vuelta conforme a decisiones confirmadas.
+- Recorrido de listado, fecha, detalle y vuelta conforme a los requisitos.
 - Casos comprobados de partido sin prórroga, con prórroga, jugador sin participación y estadísticas ausentes.
 - Estados comprobados de carga, día vacío, error con reintento y detalle incompleto.
-- Recorrido por teclado, foco visible y contenido no dependiente solo de colores o imágenes.
-- Pruebas registradas con resultados y limitaciones.
-- Documentación acorde con lo implementado, con pendientes diferenciados.
-- Para declarar completado el incremento con datos reales: integración aprobada tras revisar viabilidad técnica y condiciones de uso. Una demo ficticia se identifica y no cierra esa comprobación.
+- Recorrido por teclado, foco visible e información no dependiente solo de color o imágenes.
+- Pruebas registradas con resultado y limitaciones.
+- Documentación acorde con lo implementado y pendientes identificados.
+- Para declarar terminado con datos reales: integración aprobada tras revisar técnica y condiciones de uso. Demo ficticia identificada no cierra esa comprobación.
 
-Estos criterios no declaran cumplimiento completo de accesibilidad. Los requisitos todavía propuestos deben resolverse antes de aprobar una línea base íntegra, sin convertirlos automáticamente en compromisos.
+No equivale a cumplimiento completo de accesibilidad ni fija rendimiento. La línea base funcional permite preparar bocetos; la integración real queda condicionada a su evaluación específica.
 
-## 12. Evidencia y pendientes
+## 12. Pendientes técnicos y riesgos
 
-Esta revisión no incorpora registros técnicos nuevos ni acredita pruebas locales, versiones, consultas externas, autorizaciones o entrevistas. Se conserva la evidencia histórica referenciada en el contexto con sus limitaciones.
+1. Fuente, biblioteca e integración; cobertura de competiciones, estados e identificadores.
+2. Identificación técnica de temporada actual y límite de búsqueda.
+3. Mapa de categorías y traducciones revisadas, incluidos motivos de no participación.
+4. Caché, almacenamiento y función de PostgreSQL según diseño y condiciones de uso.
+5. Procedimiento de accesibilidad y pruebas; objetivos de rendimiento y disponibilidad.
+6. Contraste externo de utilidad; privacidad antes de recoger datos personales. Minimización o consentimiento no garantizan por sí solos cumplimiento del RGPD.
+7. Derechos de datos y recursos de terceros; sin autorización de logos ni marcas.
 
-Pendientes:
-1. Ratificar RF-03, RF-06, RF-08, la selección de campos de RF-07 y los criterios de calidad propuestos.
-2. Aprobar fuente e integración; verificar cobertura de todas las fases, estados e identificadores.
-3. Definir técnicamente temporada actual y límites de búsqueda.
-4. Resolver traducciones, categorías, caché, persistencia y papel de PostgreSQL.
-5. Concretar accesibilidad, rendimiento y procedimientos de evaluación.
-6. Validar utilidad con participantes reales y revisar privacidad antes de recoger datos personales. Minimizar datos o pedir consentimiento no garantiza por sí solo cumplimiento del RGPD.
-7. Mantener el criterio registrado de no usar logos ni marcas; cualquier cambio exige revisión expresa.
+No se incorporan registros técnicos nuevos ni se acreditan pruebas, versiones, consultas externas, autorizaciones o entrevistas. Las evidencias históricas conservan sus límites.
 
 ## 13. Gestión y asistencia
 
-GitHub es la referencia documental. Las copias del Project no se sincronizan automáticamente. El texto preparado para la issue se conserva en `seguimiento/ISSUE_1_ACTUALIZACION.md`; no actualiza automáticamente su cuerpo ni su estado.
+GitHub es referencia documental; las copias del Project no se sincronizan automáticamente. La issue #1 se actualizará y cerrará solo mediante una operación separada autorizada y tras comprobar la publicación. El documento de seguimiento contiene el texto preparado, no evidencia de envío.
 
-Se ha utilizado asistencia de IA para redactar. La responsabilidad de revisión y aprobación corresponde al responsable del proyecto. La asistencia no acredita pruebas ni autorización externa.
+Asistencia de IA para redacción. Revisión y aprobación bajo responsabilidad del responsable del proyecto; no acredita pruebas ni permiso externo.
 
 | Versión | Cambio |
 |---|---|
-| 0.1 a 0.3 | Borradores previos entregados fuera del repositorio. |
-| 0.4 | Especificación inicial incorporada a GitHub. |
-| 0.5 | Consolidación de confirmaciones de producto, criterios de terminado y pendientes técnicos, sin aprobación de proveedores. |
+| 0.1 a 0.3 | Borradores previos fuera del repositorio. |
+| 0.4 | Especificación inicial en GitHub. |
+| 0.5 | Acuerdos de alcance, comportamientos y terminado. |
+| 1.0 | Ratificación final de listado, campos, competición, consulta y claridad/accesibilidad; línea base funcional con pendientes técnicos separados. |

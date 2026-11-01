@@ -3,71 +3,67 @@
 | Control | Valor |
 |---|---|
 | Fecha | 01/11/2026 |
-| Revisión | Consolidación de decisiones del primer incremento |
+| Revisión | Línea base funcional 1.0 y preparación del cierre documental |
 | Responsable | Diego Gómez Sánchez — responsable del proyecto y desarrollador |
 
 Leer con `PROYECTO_CONTEXTO.md` y `REQUISITOS.md`.
 
 ## 1. Situación
 
-Fase: requisitos y preparación de diseño. Se han confirmado núcleo funcional, competiciones, prórrogas, participación y ausencias, estados de consulta, fechas y criterios de terminado. La evidencia de aprobación es la conversación del 01/11/2026, consolidada en requisitos 0.5.
+Fase: requisitos confirmados y preparación de diseño. Los bloques de alcance y comportamiento y la ratificación final de listado, campos, competición, carga bajo demanda y claridad/accesibilidad constan en la conversación del 01/11/2026 y se consolidan en requisitos 1.0.
 
-No se declara la especificación íntegramente aprobada. Algunos campos y comportamientos heredados siguen propuestos y se identifican individualmente. No hay integración, proveedor ni alojamiento aprobado; no se acredita implementación o prueba superada.
+No hay fuente, integración, proveedor o alojamiento aprobado. No se acredita implementación ni prueba superada. Los pendientes técnicos no se presentan como decisiones funcionales todavía sin confirmar.
 
-Siguiente paso propuesto: ratificar los detalles funcionales todavía propuestos y cerrar documentalmente la issue #1. Después, bocetos de listado y detalle y revisión temprana de viabilidad de datos antes de construir la integración.
+Siguiente actividad propuesta: verificar publicación y actualizar/cerrar la issue #1 mediante autorización separada. Después preparar bocetos de listado y detalle. Evaluar técnica y condiciones de datos antes de construir integración real.
 
-## 2. Actuaciones y evidencia
+## 2. Actuaciones y evidencias
 
 | Actuación | Evidencia y límites |
 |---|---|
-| Actualización documental previa | Commit `66d8241fb20e37ea0236bc01c2c911577f0591db`: README, contexto, estado y requisitos 0.4. |
-| Recuperación local | Resolución comunicada por el responsable en la sesión; no inspección del equipo local. |
-| Issue #1 | Lectura de GitHub: abierta, título «Concretar y aprobar los requisitos del primer incremento». Su cuerpo consultado aún contiene casillas pendientes. |
-| Tablero | Creación visible en captura. Configuración, vínculos, README y paso de la tarea a In Progress comunicados por el responsable; no verificados por consulta del tablero. |
-| Acuerdos de producto | Confirmaciones expresas de la sesión, recogidas en requisitos 0.5. |
-| Actualización actual | El commit que contiene estos documentos registra los acuerdos, no cambios automáticos en issue o tablero. |
+| Documentación inicial consolidada | Commit `66d8241fb20e37ea0236bc01c2c911577f0591db`. |
+| Acuerdos anteriores | Commit `10491535f240c3a0d735059c91247bf61a3e3194`: requisitos 0.5, contexto 5, estado y borrador de issue. |
+| Ratificación final | Confirmación expresa en conversación del 01/11/2026 de los cinco puntos presentados. |
+| Recuperación local previa | Resolución comunicada por el responsable; no inspección de equipo. |
+| Issue #1 | Leída abierta antes de esta actualización; mantiene el cuerpo inicial. No se modifica mediante el commit documental. |
+| Tablero | Creación visible en captura; configuración, vínculos, README e In Progress comunicados, no verificados por lectura del tablero. |
 
-## 3. Resultado documental
+## 3. Resultado de este commit
 
-- `REQUISITOS.md` 0.5: decisiones confirmadas, propuestas conservadas, trazabilidad y condiciones de aceptación.
-- `PROYECTO_CONTEXTO.md` 5: alcance actualizado, organización iniciada y restricciones conservadas.
-- Este estado: diferencia entre acuerdos, comprobaciones, comunicaciones y pendientes.
-- `seguimiento/ISSUE_1_ACTUALIZACION.md`: texto completo preparado para la issue, sin aplicarlo automáticamente.
+- `REQUISITOS.md` 1.0: línea base funcional, campos ratificados, calidad y aceptación con pendientes técnicos separados.
+- `PROYECTO_CONTEXTO.md` 6: decisiones actuales y restricciones conservadas.
+- Estado coherente con la ratificación final.
+- `seguimiento/ISSUE_1_ACTUALIZACION.md`: cuerpo preparado para actualizar y cerrar issue, aún sin ejecutar esa operación.
 
-README sin modificar en esta operación. La issue permanece abierta; no se marca Done ni se cierran casillas mediante el commit.
+No cambia README, issue ni tablero. No afirmar cierre de issue antes de su respuesta de escritura. Las casillas del texto preparado reflejan trabajo documental, no implementación.
 
-## 4. Pendientes
+## 4. Pendientes de ejecución
 
-1. Ratificar presentación del listado RF-03, competición o fase RF-06, consulta bajo demanda RF-08, selección de campos RF-07 y criterios de calidad todavía propuestos.
-2. Incorporar la actualización de la issue con autorización específica y revisar su condición de cierre.
-3. Elaborar bocetos una vez cerradas esas decisiones; no equivalen a aprobación de integración.
-4. Evaluar fuente, cobertura de fases, estados, identificadores, temporada y límites de búsqueda.
-5. Revisar condiciones de acceso, atribución, almacenamiento y visualización antes de aprobar integración real.
-6. Resolver caché, persistencia, categorías y traducciones; papel de PostgreSQL pendiente de diseño.
-7. Concretar rendimiento, accesibilidad detallada y pruebas. Los criterios de terminado del incremento sí están confirmados; no significan que se hayan cumplido.
-8. Preparar entrevistas y participantes reales, con privacidad revisada antes de recoger datos.
-9. Revisar originales externos antes de incorporar viabilidad, plan maestro o registros de pruebas.
+1. Comprobar publicación documental y solicitar autorización para actualizar y cerrar issue #1 como tarea de requisitos, no como incremento implementado.
+2. Preparar bocetos de listado y detalle basados en requisitos 1.0.
+3. Evaluar fuente, cobertura por fases, estados, identificadores y campos confirmados.
+4. Revisar condiciones de acceso, atribución, almacenamiento y visualización antes de aprobar integración.
+5. Concretar temporada actual y límite de búsqueda; correspondencias y traducciones.
+6. Diseñar caché/persistencia y justificar PostgreSQL.
+7. Definir procedimiento de accesibilidad, pruebas y objetivos de rendimiento/disponibilidad.
+8. Preparar entrevistas y participantes reales con privacidad revisada antes de recoger datos.
+9. Revisar originales externos antes de incorporar plan, viabilidad o registros de pruebas.
 
-## 5. Histórico de correcciones
+## 5. Histórico
 
-C1–C18 y E1–E7 siguen pendientes de revisión individual. Los acuerdos nuevos sobre requisitos y terminado no cierran automáticamente esos grupos ni la revisión de organización general. La versión anterior y su tabla íntegra se conservan en el commit `66d8241fb20e37ea0236bc01c2c911577f0591db`, ruta `docs/ESTADO_PROYECTO.md`.
+C1–C18 y E1–E7 pendientes de revisión individual. Línea base no cierra grupos enteros ni aprueba organización restante. Estado anterior íntegro: commit `10491535f240c3a0d735059c91247bf61a3e3194`, ruta `docs/ESTADO_PROYECTO.md`; histórico anterior en `66d8241fb20e37ea0236bc01c2c911577f0591db`.
 
-Los antecedentes de creación y clonación, U1–U4 e investigaciones se conservan también en el histórico referenciado. No se revalidan evidencias externas del Project ni pruebas ausentes.
+Creación/clonación, U1–U4 e investigaciones conservadas en histórico, sin revalidar evidencias externas o pruebas ausentes.
 
 ## 6. Límites
 
-No acreditado mediante esta revisión: backend, frontend, persistencia, Docker, CI/CD, pruebas locales o de aceptación, entrevistas, versiones de herramientas, envío de consultas externas o autorizaciones recibidas. La ausencia de registro revisado no afirma que ninguna de esas actuaciones haya ocurrido.
+No acreditado en esta revisión: backend, frontend, persistencia, Docker, CI/CD, pruebas locales/aceptación, entrevistas, versiones, consultas externas o autorizaciones recibidas. No disponer aquí de evidencia revisada no afirma que ninguna actuación haya ocurrido.
 
-La aprobación de producto no acredita cobertura técnica ni condiciones de uso. Datos ficticios identificados permiten pruebas controladas, no completar por sí solos el incremento con datos reales.
+Aprobación funcional no acredita cobertura ni derechos. Datos ficticios identificados permiten pruebas controladas, no cerrar por sí solos el incremento con datos reales.
 
 ## 7. Copias y sincronización
 
-Las copias previas del Project quedan desactualizadas respecto a esta revisión; no se sustituyen sin autorización expresa. El equipo local necesitará recuperar el nuevo commit; no se da el pull por realizado. Preservar cambios locales antes de resolver conflictos.
+Copias del Project desactualizadas respecto a esta revisión; no sustituidas sin autorización expresa. Nuevo pull local pendiente de confirmación. Preservar cambios locales antes de resolver conflictos.
 
-## 8. Registro de sesión
+## 8. Registro de sesión y asistencia
 
-01/11/2026: confirmación del núcleo y seis bloques de criterios; preparación de consolidación documental y texto de issue. Las aprobaciones de producto no se presentan como implementación ni como autorización de datos.
-
-## 9. Asistencia
-
-Asistencia de IA para redacción y estructuración. Responsabilidad de revisión y aprobación del responsable del proyecto.
+01/11/2026: núcleo y bloques confirmados, consolidación 0.5 y ratificación final para línea base 1.0. Asistencia de IA para redacción; responsabilidad de revisión y aprobación del responsable del proyecto. No implica implementación ni autorización de datos.
