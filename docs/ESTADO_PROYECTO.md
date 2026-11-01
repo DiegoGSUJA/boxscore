@@ -3,109 +3,71 @@
 | Control | Valor |
 |---|---|
 | Fecha | 01/11/2026 |
-| Revisión | Consolidación documental de contexto, estado y requisitos |
+| Revisión | Consolidación de decisiones del primer incremento |
 | Responsable | Diego Gómez Sánchez — responsable del proyecto y desarrollador |
 
-Leer junto con `PROYECTO_CONTEXTO.md` y `REQUISITOS.md`. Se distinguen hechos comprobados, criterios provisionales, propuestas y pendientes.
+Leer con `PROYECTO_CONTEXTO.md` y `REQUISITOS.md`.
 
-## 1. Resumen actual
+## 1. Situación
 
-- Fase: planificación y especificación inicial.
-- El repositorio contiene documentación; no contiene todavía la aplicación implementada.
-- Se incorpora `REQUISITOS.md` como borrador de un primer incremento de listado diario y detalle de partidos finalizados.
-- La incorporación documental no aprueba requisitos, proveedores, bibliotecas, alojamiento ni implementación.
-- Siguiente actividad propuesta: revisar la coherencia del alcance y aprobar explícitamente los requisitos del primer incremento antes de pasar a bocetos y diseño.
+Fase: requisitos y preparación de diseño. Se han confirmado núcleo funcional, competiciones, prórrogas, participación y ausencias, estados de consulta, fechas y criterios de terminado. La evidencia de aprobación es la conversación del 01/11/2026, consolidada en requisitos 0.5.
 
-## 2. Resultado de esta actualización
+No se declara la especificación íntegramente aprobada. Algunos campos y comportamientos heredados siguen propuestos y se identifican individualmente. No hay integración, proveedor ni alojamiento aprobado; no se acredita implementación o prueba superada.
 
-El contenido de este apartado describe los archivos incluidos en el mismo commit, no operaciones locales del responsable ni cambios en el Project.
+Siguiente paso propuesto: ratificar los detalles funcionales todavía propuestos y cerrar documentalmente la issue #1. Después, bocetos de listado y detalle y revisión temprana de viabilidad de datos antes de construir la integración.
 
-| Archivo | Resultado documental |
+## 2. Actuaciones y evidencia
+
+| Actuación | Evidencia y límites |
 |---|---|
-| `README.md` | Corrige la presentación como proyecto académico con cuentas y enlaza la documentación. |
-| `docs/REQUISITOS.md` | Incorpora requisitos propuestos, recorrido de consulta, Mermaid, condiciones de aceptación y pendientes. |
-| `docs/PROYECTO_CONTEXTO.md` | Consolida criterios y preferencias de redacción; conserva una referencia recuperable a la versión anterior. |
-| `docs/ESTADO_PROYECTO.md` | Registra el avance documental sin afirmar implementación ni pruebas no revisadas. |
+| Actualización documental previa | Commit `66d8241fb20e37ea0236bc01c2c911577f0591db`: README, contexto, estado y requisitos 0.4. |
+| Recuperación local | Resolución comunicada por el responsable en la sesión; no inspección del equipo local. |
+| Issue #1 | Lectura de GitHub: abierta, título «Concretar y aprobar los requisitos del primer incremento». Su cuerpo consultado aún contiene casillas pendientes. |
+| Tablero | Creación visible en captura. Configuración, vínculos, README y paso de la tarea a In Progress comunicados por el responsable; no verificados por consulta del tablero. |
+| Acuerdos de producto | Confirmaciones expresas de la sesión, recogidas en requisitos 0.5. |
+| Actualización actual | El commit que contiene estos documentos registra los acuerdos, no cambios automáticos en issue o tablero. |
 
-La solicitud de actualización directa consta en la conversación del 01/11/2026. La evidencia de publicación será el commit que contiene estos archivos. No se afirma que se haya realizado el pull en el equipo local.
+## 3. Resultado documental
 
-## 3. Criterios registrados
+- `REQUISITOS.md` 0.5: decisiones confirmadas, propuestas conservadas, trazabilidad y condiciones de aceptación.
+- `PROYECTO_CONTEXTO.md` 5: alcance actualizado, organización iniciada y restricciones conservadas.
+- Este estado: diferencia entre acuerdos, comprobaciones, comunicaciones y pendientes.
+- `seguimiento/ISSUE_1_ACTUALIZACION.md`: texto completo preparado para la issue, sin aplicarlo automáticamente.
 
-Conservan su carácter provisional cuando no existe aprobación específica para implementar:
+README sin modificar en esta operación. La issue permanece abierta; no se marca Done ni se cierran casillas mediante el commit.
 
-- Portal NBA, no juego ni fantasy, desarrollado de manera unipersonal con finalidad formativa.
-- Presupuesto de 0 euros y prioridad local. Demo privada opcional y condicionada.
-- Stack provisional: Java y Spring Boot, PostgreSQL y React con TypeScript.
-- Docker Compose y GitHub Actions como aprendizaje prioritario; Kubernetes después del MVP.
-- Fuentes, bibliotecas de acceso, proveedores, alojamiento y versiones concretas pendientes.
-- Datos reales como prioridad de evaluación; datos ficticios como apoyo o alternativa explícita, identificados.
-- Validación con participantes reales y límites de la evidencia documentados.
-- Markdown y Mermaid en GitHub; copias del Project como respaldo sin sincronización automática.
+## 4. Pendientes
 
-Criterio editorial confirmado en la sesión: lenguaje técnico e impersonal, sin narración del chat ni equipos ficticios. Se solicitan entregables completos y revisados.
+1. Ratificar presentación del listado RF-03, competición o fase RF-06, consulta bajo demanda RF-08, selección de campos RF-07 y criterios de calidad todavía propuestos.
+2. Incorporar la actualización de la issue con autorización específica y revisar su condición de cierre.
+3. Elaborar bocetos una vez cerradas esas decisiones; no equivalen a aprobación de integración.
+4. Evaluar fuente, cobertura de fases, estados, identificadores, temporada y límites de búsqueda.
+5. Revisar condiciones de acceso, atribución, almacenamiento y visualización antes de aprobar integración real.
+6. Resolver caché, persistencia, categorías y traducciones; papel de PostgreSQL pendiente de diseño.
+7. Concretar rendimiento, accesibilidad detallada y pruebas. Los criterios de terminado del incremento sí están confirmados; no significan que se hayan cumplido.
+8. Preparar entrevistas y participantes reales, con privacidad revisada antes de recoger datos.
+9. Revisar originales externos antes de incorporar viabilidad, plan maestro o registros de pruebas.
 
-## 4. Evidencia disponible y límites
+## 5. Histórico de correcciones
 
-### 4.1 Comprobado en esta revisión
+C1–C18 y E1–E7 siguen pendientes de revisión individual. Los acuerdos nuevos sobre requisitos y terminado no cierran automáticamente esos grupos ni la revisión de organización general. La versión anterior y su tabla íntegra se conservan en el commit `66d8241fb20e37ea0236bc01c2c911577f0591db`, ruta `docs/ESTADO_PROYECTO.md`.
 
-Antes de la escritura se consultaron el README, el contexto, el estado y el inventario de la rama `main`. La referencia previa es `6855fdd3e6e4b5489fa3005a8ed61c6fa5653307`.
+Los antecedentes de creación y clonación, U1–U4 e investigaciones se conservan también en el histórico referenciado. No se revalidan evidencias externas del Project ni pruebas ausentes.
 
-El inventario previo contenía `README.md`, `docs/PROYECTO_CONTEXTO.md` y `docs/ESTADO_PROYECTO.md`. El primer borrador de requisitos no estaba incorporado.
+## 6. Límites
 
-### 4.2 Antecedentes conservados
+No acreditado mediante esta revisión: backend, frontend, persistencia, Docker, CI/CD, pruebas locales o de aceptación, entrevistas, versiones de herramientas, envío de consultas externas o autorizaciones recibidas. La ausencia de registro revisado no afirma que ninguna de esas actuaciones haya ocurrido.
 
-La versión previa del estado registra la creación y clonación del repositorio, documentación inicial, revisiones U1–U4 e investigaciones de fuentes. Su contenido completo y referencias se conservan en el commit anterior, ruta `docs/ESTADO_PROYECTO.md`. SHA del archivo anterior: `fd7c76e1d462952998852178c8a7db90d8c25333`.
+La aprobación de producto no acredita cobertura técnica ni condiciones de uso. Datos ficticios identificados permiten pruebas controladas, no completar por sí solos el incremento con datos reales.
 
-No se revalidan aquí las evidencias externas del Project ni los archivos de pruebas ausentes. La sustitución previa de copias del Project consta en el histórico, pero no demuestra su sincronización actual.
+## 7. Copias y sincronización
 
-### 4.3 No acreditado en esta revisión
-
-- Implementación de backend, frontend, persistencia, Docker o CI/CD.
-- Resultados de pruebas locales o de aceptación.
-- Versiones de herramientas utilizadas en pruebas no incorporadas.
-- Envío de consultas externas, respuestas o autorización de uso de datos.
-- Entrevistas realizadas o hipótesis validadas con participantes.
-
-La falta de evidencia revisada no equivale a afirmar que esas actuaciones no hayan ocurrido. Se requiere su registro antes de tratarlas como verificadas.
-
-## 5. Pendientes
-
-Orden propuesto, no aprobado como planificación cerrada:
-
-1. Revisar diferencias entre los candidatos generales al MVP y el incremento de `REQUISITOS.md`; aprobar una línea base explícita.
-2. Revisar e incorporar, cuando se autorice, evidencia técnica de datos y condiciones aplicables. No aprobar la integración solo por una respuesta técnica satisfactoria.
-3. Concretar cobertura y temporada actual; prórrogas; jugadores sin participación; valores ausentes; clasificación de competición y fase.
-4. Definir criterios de accesibilidad, rendimiento y terminado proporcionados.
-5. Elaborar bocetos de listado y detalle cuando el alcance esté confirmado.
-6. Preparar entrevistas y buscar participantes reales, revisando privacidad antes de recoger datos personales.
-7. Resolver integración, caché, persistencia y papel de PostgreSQL durante el diseño.
-8. Decidir la incorporación de `VIABILIDAD_DATOS.md`, `PLAN_MAESTRO.md` y registros externos. No se reconstruyen sus contenidos sin los originales.
-9. Revisar individualmente las correcciones C1–C18 y E1–E7 y la organización mediante issues; no declararlas cerradas por esta consolidación.
-
-## 6. Correcciones históricas pendientes
-
-| Grupo | Tema | Estado |
-|---|---|---|
-| C1–C7 | Fuentes y datos | Pendiente de revisión individual. |
-| C8–C10 | Lesiones, exportación y récords | Pendiente de revisión individual. |
-| C11 | Actualización después de partidos | Pendiente; no se aprueba automatización periódica. |
-| C12–C15 | Versiones, importador, JWT y Kubernetes | Criterios parciales en contexto; sin cierre global. |
-| C16 | Calidad verificable | Pendiente; requisitos de calidad todavía propuestos. |
-| C17–C18 | Flujo de trabajo y checklist | Pendiente de revisión individual. |
-| E1–E7 | Datos, evidencias, registro y planificación | Pendiente de revisión individual. |
-
-## 7. Copias del Project y equipo local
-
-Las copias anteriores de contexto y estado del Project quedan desactualizadas respecto a esta revisión. No se han sustituido mediante este commit; hacerlo requiere autorización expresa.
-
-El equipo local no se modifica con la escritura remota. La actualización local queda pendiente de pull. Cualquier cambio local no publicado deberá preservarse antes de resolver un posible conflicto.
+Las copias previas del Project quedan desactualizadas respecto a esta revisión; no se sustituyen sin autorización expresa. El equipo local necesitará recuperar el nuevo commit; no se da el pull por realizado. Preservar cambios locales antes de resolver conflictos.
 
 ## 8. Registro de sesión
 
-| Fecha | Actuación | Alcance y límites |
-|---|---|---|
-| 01/11/2026 | Revisión editorial de entregables y preparación de actualización documental en GitHub. | Estilo profesional unipersonal; corrección de atribuciones no contrastadas; requisitos como borrador. No implica implementación, autorización de datos ni pruebas superadas. |
+01/11/2026: confirmación del núcleo y seis bloques de criterios; preparación de consolidación documental y texto de issue. Las aprobaciones de producto no se presentan como implementación ni como autorización de datos.
 
-## 9. Asistencia automatizada
+## 9. Asistencia
 
-Se ha utilizado asistencia de IA para redactar y consolidar documentación. El responsable del proyecto conserva la responsabilidad de revisión y aprobación.
+Asistencia de IA para redacción y estructuración. Responsabilidad de revisión y aprobación del responsable del proyecto.
