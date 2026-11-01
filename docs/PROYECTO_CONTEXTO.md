@@ -2,129 +2,110 @@
 
 | Control | Valor |
 |---|---|
-| Versión | 6 |
+| Versión | 7 |
 | Fecha | 01/11/2026 |
 | Responsable | Diego Gómez Sánchez — responsable del proyecto y desarrollador |
-| Revisión | Línea base funcional; diseño e integración pendientes |
+| Revisión | Preparación inicial consolidada; paso a entorno y backend, integración real en espera |
 
-Leer junto con `ESTADO_PROYECTO.md` y `REQUISITOS.md`.
+Leer con `ESTADO_PROYECTO.md`, `REQUISITOS.md`, `DISENO_UX.md`, `DISENO_TECNICO.md` y `VIABILIDAD_DATOS.md`.
 
-## 1. Estados y reglas
+## 1. Estados y responsabilidad
 
-- Confirmado: decisión expresa de producto, no prueba ni implementación.
-- Registrado: criterio previo, provisional cuando así se indicaba.
-- Propuesto: contenido sin aprobar.
-- Verificado: hecho con evidencia identificada.
-- Pendiente: decisión o comprobación no cerrada.
+Confirmado: decisión expresa, no implementación ni prueba. Registrado: criterio previo, provisional cuando correspondía. Propuesto: sin aprobar. Verificado: evidencia identificada. Pendiente: decisión o comprobación abierta.
 
-No convertir propuestas en decisiones. Mantener separadas aprobación de producto, ejecución técnica y condiciones de uso. Escribir documentación no aprueba proveedores ni acredita avances de implementación.
+Separar producto, ejecución técnica y condiciones de uso. No inventar entrevistas, resultados, autorizaciones o avances. La aprobación de este paquete no aprueba fuente, biblioteca, proveedor, alojamiento o código inexistente.
 
 ## 2. Marco registrado
 
-Proyecto personal de formación unipersonal, sin supervisión académica ni fecha obligatoria. Objetivo: comprender el ciclo completo. Trabajo por tareas, sin disponibilidad semanal aprobada. Registro de tiempo previsto durante las primeras dos semanas; ejecución no acreditada aquí.
+Proyecto personal de formación unipersonal, sin supervisión académica ni fecha obligatoria. Objetivo: practicar el ciclo completo. Trabajo por tareas, sin disponibilidad semanal aprobada. Registro de tiempo previsto para primeras dos semanas; ejecución no acreditada aquí.
 
-Presupuesto de 0 euros estricto, sin nuevas suscripciones ni pruebas que se conviertan en pago. Suscripción existente de Perplexity aparte.
+Presupuesto de 0 euros estricto: sin suscripciones nuevas ni pruebas que se conviertan en pago. Suscripción existente de Perplexity aparte.
 
-Prioridades: requisitos y alcance; arquitectura y datos; backend; Docker, CI/CD y despliegue. Entrevistas, UX, seguridad, pruebas, presupuesto y mantenimiento forman parte del aprendizaje. Frontend con menor profundidad por experiencia previa; Kubernetes tras el MVP.
+Prioridades de profundidad: requisitos y alcance; arquitectura/modelo de datos; backend; Docker, CI/CD y despliegue. Entrevistas, UX, seguridad, pruebas, presupuesto y mantenimiento forman parte del ciclo con entregables proporcionados. Frontend con menor profundidad por experiencia previa; Kubernetes tras el MVP.
 
 ## 3. Colaboración y entregables
 
-Español conciso y práctico; pasos con confirmación, salvo encargo completo o petición de agrupar pasos. Preferir interfaz gráfica en Windows 11, VS Code y GitHub Desktop a terminal.
+Español conciso y práctico. Pasos con confirmación, salvo petición expresa de agrupar o completar un bloque. Preferir interfaz gráfica de Windows 11, VS Code y GitHub Desktop; terminal solo cuando aporta una comprobación concreta.
 
-Entregables completos revisados, lenguaje técnico e impersonal para desarrollo unipersonal, sin narrar el chat ni inventar miembros o revisores. Separar decisiones, propuestas, hechos y pendientes; asistencia de IA en apartado específico. No trasladar correcciones editoriales repetitivas al responsable.
+Documentos completos, revisados, técnicos e impersonales para desarrollo unipersonal. Sin narración del chat ni miembros ficticios. Asistencia de IA en apartado específico. No trasladar correcciones editoriales sucesivas al responsable ni reabrir acuerdos sin motivo.
 
-Las autorizaciones de escritura son específicas, no permanentes.
+Encargo del 01/11/2026: completar de manera agrupada el bloque de preparación y pasar a ejecución. No es autorización permanente para escrituras futuras. Agrupar cambios coherentes y obtener aprobación del contenido exacto antes de publicarlos.
 
 ## 4. Producto e hipótesis
 
-Portal informativo NBA, no juego ni fantasy. Hipótesis pendientes de validación externa: aficionados españoles que quieren ponerse al día de su equipo; público secundario interesado en comparaciones e histórico.
+Portal NBA, no juego ni fantasy. Hipótesis pendientes de validación externa: aficionados españoles que quieren ponerse al día de su equipo; público secundario interesado en comparaciones e histórico.
 
-Ideas previas no comprometidas: resumen de cambios mediante reglas y plantillas sin IA de pago, evolución visual y explicaciones breves. La posición requiere clasificación actualizada.
+Ideas previas no comprometidas: resumen de cambios mediante reglas y plantillas sin IA de pago, evolución visual y explicaciones. Posición condicionada a clasificación actualizada.
 
-## 5. Alcance
+Candidatos históricos no añadidos al incremento: selección de equipo, ficha/plantilla, panel de cambios, gráfica, explicaciones y estado técnico de actualización. Ampliaciones sin aprobar: cuentas, varios equipos, ficha de jugador, clasificación, comparador, histórico, alertas, modo sin spoilers, `.ics` y noticias.
 
-### 5.1 Contexto histórico
+## 5. Línea base y diseño confirmados
 
-Candidatos generales: selección de equipo sin registro; calendario y resultados; ficha y plantilla condicionadas a datos; box score; panel de cambios; una gráfica; explicaciones y comprobación de actualización. No son compromisos adicionales de la línea base.
+Núcleo: listado diario, fecha y detalle de finalizados de la temporada actual. Incluye temporada regular, NBA Cup con final, play-in y playoffs con Finales; excluye pretemporada, All-Star, Summer League y años anteriores. Sin duplicar encuentros por etiquetas solapadas. Fuera del incremento cuentas, favoritos, directos, noticias, gráficas, porcentajes y avanzadas.
 
-Ampliaciones registradas sin aprobación de implementación: cuentas, varios equipos, fichas de jugador, clasificación, gráficas de jugadores, comparador e histórico, alertas, modo sin spoilers, `.ics` y noticias.
+`REQUISITOS.md` 1.0 recoge listado local/visitante, resultado, detalle, cuartos/prórrogas, campos individuales, ausencias, no participación, carga/error/reintento, fecha española, conservación de selección y criterios de terminado. Aprobación no implica que dichos criterios se hayan cumplido.
 
-### 5.2 Línea base funcional confirmada
+`DISENO_UX.md` 1.1: tarjetas y dos tablas de equipos apiladas; desplazamiento horizontal limitado a tablas, campos conservados; teclado, foco, regreso al origen y mensajes definitivos. Distribución y reglas confirmadas, sin conformidad WCAG demostrada, diseño visual final o pruebas ejecutadas.
 
-`REQUISITOS.md` 1.0 consolida las confirmaciones del 01/11/2026. Núcleo: listado diario, selección de fecha y detalle de partidos finalizados de temporada actual.
-
-Incluye temporada regular, NBA Cup con su final, play-in y playoffs con Finales; excluye pretemporada, All-Star, Summer League y temporadas anteriores. Sin duplicar encuentros por solapamiento de etiquetas. Cuentas, favoritos, directos, noticias y gráficas fuera del incremento.
-
-Confirmados: cuartos y prórrogas, ausencias/no participación, carga/errores/reintentos, detalle incompleto, fecha por inicio en España peninsular, intervalo hasta hoy, conservación de selección y criterios de terminado.
-
-Ratificación final: listado con nombres local/visitante, resultado y Ver detalle; tablas por equipo con nombre, minutos, puntos, rebotes, asistencias, robos, tapones, pérdidas y tiros anotados/intentos; sin porcentajes o avanzadas. Etiquetas en español sin inferencias; consulta bajo demanda sin descargar todos los detalles. Claridad de fecha/partido, controles comprensibles, encabezados y preparación para tecnologías de asistencia.
-
-La aprobación funcional no garantiza cobertura ni permiso de uso. Categorías y correspondencias técnicas, límites de búsqueda y métodos de prueba siguen pendientes. No se declara accesibilidad completa ni rendimiento aprobado.
-
-## 6. Validación y privacidad
-
-Priorizar participantes reales, sin número confirmado ni ficticios como evidencia. Registrar hipótesis apoyadas, cuestionadas o pendientes y límites de muestra; guion en paralelo a búsqueda de participantes.
-
-Propuesta: minimizar datos y revisar finalidad, consentimiento, acceso, conservación y anonimización antes de recogerlos. No garantiza cumplimiento del RGPD. No se acreditan entrevistas o validación externa en esta revisión.
-
-## 7. Datos y exposición
-
-Datos reales como prioridad de evaluación técnica y de condiciones de uso. `nba_api` es opción, no integración aprobada; Python condicionado, sin importador separado aprobado. Datos ficticios de apoyo o alternativa explícita identificada.
-
-Investigación y pruebas de nube anteriores en histórico, sin revalidar ni extrapolar al entorno local. No se niegan pruebas posteriores: requieren registros revisados. No se acreditan nuevas versiones, partidos, consultas externas o autorizaciones.
-
-Revisar acceso automatizado, visualización, atribución, almacenamiento, cobertura y restricciones de actualización/estadísticas antes de aprobar fuente. Uso local o privado no es permiso por sí solo. No es asesoramiento jurídico.
-
-Local prioritario; demo privada opcional y condicionada a coste, acceso y condiciones. Publicación abierta no prevista. Demo ficticia no acredita cobertura real. Nombre propio sin logos ni marcas NBA o de equipos como criterio registrado; cualquier cambio requiere revisión expresa.
-
-## 8. Tecnología provisional
-
-| Área | Criterio registrado |
-|---|---|
-| Backend | Java y Spring Boot, aplicación única modular. |
-| Datos | PostgreSQL de partida; persistencia por justificar. |
-| Frontend | React y TypeScript. |
-| Aprendizaje | Docker Compose y GitHub Actions progresivos; Kubernetes tras MVP. |
-| Condicionado | Python según integración. |
-| Seguridad | Validación, secretos fuera del repo, cabeceras y comprobaciones protegidas. |
-| Aplazado | Cuentas; no excluye todo uso de Spring Security. |
-| Fuera del alcance actual | JWT, microservicios, dos proveedores y PostgreSQL en Kubernetes; no descartes permanentes. |
-| Sin aprobar | Versiones, fuentes, bibliotecas de datos, proveedores y alojamiento. |
-
-Esquema provisional, no implementación ni persistencia aprobada:
+`DISENO_TECNICO.md` 1.0: aplicación única modular; controlador, servicio e interfaz interna sustituible de datos. `GET /api/partidos` con fecha opcional y `GET /api/partidos/{id}`. Contrato base propio, nulos diferenciados de cero, errores HTTP/Problem Details y primeras pruebas. JSON exhaustivo de detalle y mecanismos se concretarán con el código, sin añadir funciones.
 
 ```mermaid
 flowchart LR
-    F[Fuente sin aprobar] --> I[Integración por definir]
-    I --> B[Spring Boot modular]
-    W[React y TypeScript] --> B
-    B -. Persistencia por justificar .-> P[(PostgreSQL)]
+    R[React] --> C[Controlador]
+    C --> S[Servicio]
+    S --> I[Interfaz interna de datos]
+    I -. Pruebas controladas .-> T[Datos ficticios identificados]
+    I -. Integración en espera .-> F[Fuente real sin aprobar]
 ```
+
+Esquema de partida, no código implementado. PostgreSQL no se incorpora como paso obligatorio del flujo.
+
+## 6. Datos y conclusión de la revisión
+
+Prioridad histórica: datos reales con evaluación temprana técnica y de condiciones. Las salidas locales aportadas muestran viabilidad exploratoria de listado y un detalle, no cobertura completa ni derechos de uso. Entorno actual comunicado: Python 3.13.14 y `nba_api` 1.12.0; no prueba retrospectiva del entorno del TXT anterior.
+
+`VIABILIDAD_DATOS.md` distingue evidencias, límites y fuentes públicas consultadas el 01/11/2026. Hallazgo: FAQ oficial de NBA Stats restrictiva sobre descarga personal/académica; términos con atribución y restricciones, incluidas bases completas regularmente actualizadas con consentimiento previo. La licencia MIT de `nba_api` no licencia los datos NBA. No se declara una prohibición jurídica definitiva ni autorización por uso privado.
+
+Conclusión operativa de este paquete: no integrar ni efectuar nuevas consultas NBA para el producto hasta aclarar y aprobar el uso. Preparar entorno y núcleo del backend con casos ficticios identificados para pruebas. Es una separación temporal del trabajo técnico, no sustitución silenciosa del producto por una demo ficticia ni cierre del incremento real.
+
+`nba_api`, Python como componente, fuente y proveedor siguen sin aprobar. No eludir bloqueos ni añadir importadores periódicos. Borrador de consulta disponible, no enviado; no se acredita envío anterior ni respuesta recibida.
+
+## 7. Exposición, seguridad y privacidad
+
+Local prioritario; demo privada opcional y condicionada a coste, acceso y condiciones. Publicación abierta no prevista. Sin autorización de logos o marcas; nombre propio y ausencia de afiliación. Demo ficticia identificada no valida integración real.
+
+Seguridad inicial: validación de entradas, secretos fuera del repo, cabeceras y comprobaciones técnicas protegidas; no se afirma implementación. Antes de subir registros retirar rutas personales y secretos. El TXT original no se publica.
+
+Validación: participantes reales, sin número confirmado; guion y búsqueda en paralelo, sin ficticios como evidencia. Registrar hipótesis y límites. Revisar finalidad, consentimiento cuando proceda, conservación, acceso y minimización antes de recoger datos; ninguna medida aislada garantiza RGPD. No se acreditan entrevistas.
+
+## 8. Tecnología provisional
+
+Java/Spring Boot modular; PostgreSQL de partida, persistencia por justificar; React/TypeScript. Docker Compose y GitHub Actions progresivos. Python solo si se aprueba una integración que lo requiera. Cuentas aplazadas, sin excluir todo uso de Spring Security.
+
+JWT, microservicios, dos proveedores y PostgreSQL en Kubernetes fuera del alcance actual, no descartes permanentes. Versiones, dependencias, caché, esquema BD, alojamiento y proveedores pendientes. La preparación del entorno empieza por comprobar lo instalado, sin contratar servicios.
 
 ## 9. Organización y copias
 
-GitHub es referencia; propuestas conservan estado. Copias del Project como respaldo, prevalece repo si difieren. Sin sincronización automática ni actualización obligatoria al terminar sesión.
+GitHub es referencia; la publicación no convierte propuestas en decisiones. Contexto y estado del Project son respaldo: prevalece repo si difieren. No hay sincronización automática ni actualización obligatoria al terminar sesión.
 
-Modificar maestros cuando se solicite, mostrando texto y esperando confirmación. Avisar de copias desactualizadas, no sustituirlas sin autorización. Si GitHub falla, usar respaldo avisando vigencia no comprobada y commit conocido.
+Actualizar maestros solo con encargo, texto previo y confirmación. Avisar de copias desactualizadas y no sustituirlas sin autorización expresa. Si GitHub no puede leerse, usar respaldo con aviso de vigencia no comprobada y commit conocido.
 
-Uso iniciado de issues y Projects: issue #1 verificada. Configuración del tablero, README, vínculos y paso a In Progress comunicados por el responsable, sin inspección del tablero. Originales de documentos y Mermaid en `docs`, enlazados sin duplicación.
+Issue #1 cerrada como completed, comprobada en GitHub. Tablero creado según captura; configuración y paso a In Progress comunicados por el responsable, no inspeccionados mediante conector. No afirmar que el cierre movió la tarjeta a Done.
 
-Siguen propuestos el campo de horas reales, trazabilidad completa a PR/pruebas y etiqueta de cambio de alcance. No se aprueba organización restante en bloque.
+Documentos y Mermaid originales en `docs`, enlazados desde Projects. Borradores de tareas y de actualización de issue dentro de documentos son registros de preparación, no tareas automáticamente creadas ni instrucciones operativas vigentes que deban repetirse. No crear trabajo retrospectivo solo para cada apartado.
 
-## 10. Riesgos y pendientes
+Campo de horas, trazabilidad completa a PR/pruebas y etiqueta específica de cambios de alcance siguen como propuestas, no aprobación en bloque de toda la organización.
 
-Fuente incompatible/inestable, cobertura incompleta, alcance excesivo y evidencia insuficiente: evaluar temprano, conservar incremento pequeño y revisar registros sin secretos ni datos personales innecesarios.
+## 10. Trabajo pendiente y cierre del bloque
 
-Pendientes: cobertura, condiciones, correspondencias, caché/almacenamiento, PostgreSQL, método de accesibilidad, rendimiento y validación externa. Criterios de terminado confirmados no implican que se hayan cumplido.
+Preparación inicial suficiente para comenzar el entorno y núcleo del backend; no equivale a proyecto completado. No se exige otra ronda de microdecisiones de texto, pantallas o JSON antes de ejecutar. Detalles de código se resolverán y probarán de manera agrupada.
 
-Hitos generales y revisión individual C1–C18/E1–E7 pendientes. No incorporar plan maestro, viabilidad ni registros externos sin originales revisados. No declarar esos grupos cerrados por esta línea base.
+Pendientes reales: aclaración de condiciones, integración/cobertura, versiones, código, modelo detallado, persistencia justificada, pruebas, accesibilidad, rendimiento, entrevistas, presupuesto/tiempo, Docker/CI/CD y operación mínima. Kubernetes después.
 
-## 11. Histórico
+Hitos generales y C1–C18/E1–E7 conservan revisión individual; no se declaran cerrados por esta consolidación. Planes/registros externos ausentes no se reconstruyen ni incorporan como originales.
 
-- Versión 5 íntegra: commit `10491535f240c3a0d735059c91247bf61a3e3194`, ruta `docs/PROYECTO_CONTEXTO.md`.
-- Versión 4: commit `66d8241fb20e37ea0236bc01c2c911577f0591db`, misma ruta.
-- Versión 3 y anexos: commit `6855fdd3e6e4b5489fa3005a8ed61c6fa5653307`, misma ruta. SHA de ese contenido: `af03e880b0f6c6c0848835c4a662dd3c2387b806`. No aprueba anexos.
+## 11. Histórico y asistencia
 
-## 12. Asistencia
+Contexto 6 íntegro anterior a esta actualización: commit `23702e677a20820c0183101bea35091a46067030`, ruta `docs/PROYECTO_CONTEXTO.md`. Versiones anteriores y anexos recuperables mediante referencias conservadas en ese histórico.
 
-Asistencia de IA para estructurar y redactar. Revisión y aprobación del responsable; no sustituye evidencia, pruebas o autorización externa.
+Asistencia de IA para estructura y redacción. Revisión y aprobación bajo responsabilidad del responsable del proyecto; no sustituye pruebas, evidencia o autorización externa.
