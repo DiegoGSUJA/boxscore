@@ -1,312 +1,174 @@
-# Boxscore - Contexto del proyecto (documento maestro)
+# Boxscore — Contexto del proyecto
 
-> Léelo junto con `ESTADO_PROYECTO.md` al inicio de cada conversación con una IA.
-> Última actualización: 2026-11-01 · Versión 3 (sustituye a la versión 2 del commit `ff2907c`).
-
-## 0. Cómo leer este documento
-
-| Etiqueta | Significado |
+| Control | Valor |
 |---|---|
-| **[Diego]** | Decisión de Diego, **provisional**. Sirve de referencia, pero no está aprobada para implementar. |
-| **[Propuesta]** | Sugerencia de una IA o borrador, **sin aprobar**. |
-| **[Hecho]** | Verificado con una fuente y una fecha. |
-| **[Pendiente]** | Sin resolver. |
+| Versión | 4 |
+| Fecha | 01/11/2026 |
+| Responsable | Diego Gómez Sánchez — responsable del proyecto y desarrollador |
+| Naturaleza de esta revisión | Consolidación documental; no aprobación de implementación ni de proveedores |
 
-Reglas:
-- Nada se implementa hasta que exista una decisión expresa de Diego (ADR o indicación directa).
-- Una IA **no debe** convertir propuestas en decisiones ni dar avances por hechos sin enlazar la evidencia (commit, PR o archivo).
-- **No están aprobados:** las **fuentes y bibliotecas de acceso a datos**, los **proveedores de datos** y el **alojamiento**. El stack elegido (sección 8) es una decisión provisional aparte.
-- **Los bloques del MVP son candidatos, no compromisos.**
+Leer junto con `ESTADO_PROYECTO.md` y `REQUISITOS.md`.
 
-## 1. Quién soy y cómo quiero que me ayudes
+## 1. Estados y reglas
 
-- Diego Gómez Sánchez, estudiante de Ingeniería Informática (Jaén, España). Respuestas en español, concisas y prácticas.
-- Explicaciones **paso a paso**, un paso cada vez, esperando mi confirmación.
-- Uso Windows 11, VS Code, GitHub Desktop y la web de GitHub. Prefiero interfaz gráfica antes que terminal, salvo que sea imprescindible.
-- Cuando haya varias opciones, elige una y justifícala en 2 líneas. Debe quedar claro que es una propuesta.
-- No inventes entrevistas, pruebas, avances ni aprobaciones.
+- Registrado: criterio recogido en el contexto anterior; conserva su carácter provisional, salvo aprobación expresa documentada.
+- Propuesto: contenido pendiente de aprobación.
+- Hecho verificado: actuación con evidencia identificada.
+- Pendiente: decisión, comprobación o evidencia todavía no cerrada.
 
-## 2. Marco del proyecto [Diego]
+No convertir propuestas en decisiones ni presentar pruebas, entrevistas, autorizaciones o avances sin evidencia. La autorización para actualizar documentación no aprueba los requisitos funcionales ni permite dar por implementada la aplicación.
 
-- **Tipo:** proyecto personal de formación, sin fecha obligatoria y sin supervisión académica.
-- **Objetivo principal:** recorrer y entender el ciclo completo de desarrollo (cliente, requisitos, diseño, presupuesto, implementación, seguridad, pruebas, despliegue y mantenimiento), no solo terminar una web.
-- **Tiempo:** trabajo organizado por tareas, sin fechas. Durante las 2 primeras semanas de trabajo registraré el tiempo real para ajustar el alcance. **No hay disponibilidad semanal aprobada.**
-- **Presupuesto:** 0 € estricto. Sin suscripciones ni pruebas gratuitas que se conviertan en pago. Lo que requiera pagar se aplaza, se sustituye o se practica con datos ficticios claramente identificados. Mi suscripción de Perplexity queda aparte; no se contrata nada adicional.
-- **Prioridades de aprendizaje (más profundidad), en orden:**
-  1. Requisitos y alcance.
-  2. Arquitectura y modelo de datos.
-  3. Backend en Java con Spring Boot.
-  4. Docker, CI/CD y despliegue.
-- **Resto del ciclo:** entrevistas, UX, seguridad, pruebas, presupuesto y mantenimiento son obligatorios, con entregables prácticos y proporcionados.
-- **Frontend:** menos profundidad, porque ya tengo experiencia con React y TypeScript.
-- **Kubernetes:** fase de aprendizaje posterior al MVP.
+## 2. Marco del proyecto
 
-## 3. Producto: hipótesis por validar
+Criterios registrados de partida:
 
-Boxscore es un portal informativo de baloncesto NBA. **No es un juego ni un fantasy.** Usará un nombre propio, sin logos ni marcas de la NBA ni de los equipos.
+- Proyecto personal de formación y desarrollo unipersonal, sin supervisión académica ni fecha obligatoria.
+- Objetivo: comprender el ciclo completo de ingeniería de software, no solo construir una web.
+- Trabajo por tareas, sin disponibilidad semanal aprobada. Se había previsto registrar el tiempo real durante las dos primeras semanas de trabajo; su ejecución no está acreditada.
+- Presupuesto de 0 euros estricto. No contratar servicios adicionales ni pruebas que se conviertan en pago. La suscripción existente de Perplexity queda fuera del presupuesto del proyecto.
+- Prioridades: requisitos y alcance; arquitectura y datos; backend; Docker, CI/CD y despliegue.
+- Entrevistas, UX, seguridad, pruebas, presupuesto y mantenimiento forman parte del aprendizaje previsto, con entregables proporcionados.
+- Frontend con menor profundidad por experiencia previa en React y TypeScript. Kubernetes se aplaza hasta después del MVP.
 
-| Elemento | Contenido | Estado |
-|---|---|---|
-| Público principal | Aficionados españoles que siguen a uno o varios equipos y quieren ponerse al día de forma rápida y personalizada, vean o no los partidos en directo | [Diego] Hipótesis |
-| Público secundario | Aficionados que quieren profundizar con comparaciones e histórico; se atenderán progresivamente, según los datos disponibles | [Diego] Hipótesis |
-| Núcleo | Seguir a tu equipo y entender cómo está: resultados, calendario, jugadores, estadísticas y evolución | [Diego] Hipótesis |
-| Problema | Para saber cómo está su equipo, el aficionado consulta varias fuentes, en inglés y con horario de EE. UU.; le cuesta ponerse al día rápido y entender la evolución más allá del último resultado | [Propuesta] Hipótesis |
-| Diferenciador A | "Qué ha cambiado" tras cada partido: resultado, racha, jugadores destacados y próximo encuentro. Generado con reglas y plantillas, sin IA de pago. La posición solo se añade cuando haya clasificación actualizada | [Diego] Hipótesis |
-| Diferenciador D | Evolución visual del equipo y de sus jugadores durante la temporada, con gráficas comprensibles y un alcance inicial pequeño | [Diego] Hipótesis |
-| Apoyo C | Explicaciones breves de las estadísticas que se muestren, sin convertirlo en otro módulo grande | [Diego] Hipótesis |
+## 3. Forma de colaboración y redacción
 
-## 4. Validación [Diego]
+Criterios expresados por el responsable del proyecto:
 
-- Primero intentaré conseguir **participantes reales**. Aún no sé cuántos tendré.
-- No se presentarán personajes ficticios como evidencia real. Si solo hay 1-2 participantes, se documenta ese alcance limitado.
-- El número de participantes no valida nada por sí mismo. Cada hipótesis queda **apoyada, cuestionada o pendiente**, documentando los resultados y sus límites.
-- [Propuesta] Pedir consentimiento para tomar notas y anonimizarlas. Son medidas propuestas: **no garantizan por sí solas el cumplimiento del RGPD**. Los requisitos de privacidad se revisarán según los datos que realmente se recojan.
-- El guion de entrevista se prepara en paralelo a la búsqueda de participantes.
+- Respuestas en español, concisas y prácticas. Explicaciones de un paso cada vez, esperando confirmación, salvo encargo expreso de una actuación completa.
+- Preferir interfaz gráfica: Windows 11, VS Code y GitHub Desktop.
+- Cuando existan opciones, formular una propuesta concreta y justificarla brevemente.
+- Entregar documentos completos y revisados, no trasladar al responsable una sucesión de correcciones manuales por errores de redacción.
+- Redactar entregables en estilo técnico e impersonal, adecuado a un equipo unipersonal. No narrar la conversación ni atribuir miembros, departamentos o revisores inexistentes.
+- Distinguir decisiones, propuestas, hechos y pendientes mediante estados y trazabilidad. La redacción formal no sustituye a la evidencia.
+- Registrar la asistencia de IA en un apartado específico cuando corresponda, no dispersarla por cada requisito.
 
-## 5. Alcance
+El 01/11/2026 se solicitó realizar directamente en GitHub la actualización documental de esta sesión para recuperarla después mediante pull. Este encargo no constituye una autorización permanente para futuras escrituras.
 
-### 5.1 Candidatos al MVP [Diego]
+## 4. Producto e hipótesis
 
-Son candidatos, **no compromisos**. Se confirmarán según la viabilidad de los datos y el tiempo real.
+Boxscore es un portal informativo de baloncesto NBA; no es un juego ni un fantasy.
 
-| Bloque | Alcance |
+Hipótesis registradas, no validadas con participantes externos en esta revisión:
+
+| Elemento | Hipótesis |
 |---|---|
-| Selección de equipo | Un único equipo, sin registro |
-| Calendario y resultados | En hora de España, alcance pequeño |
-| Ficha de equipo | La plantilla solo si hay datos disponibles |
-| Box score | Datos de los jugadores de cada partido |
-| Panel "qué ha cambiado" | Resultado, racha, jugadores destacados y próximo partido; sin posición |
-| Gráfica de evolución | Una sola, del equipo, limitada al periodo con datos |
-| Explicaciones de estadísticas | Mínimas |
-| Estado de los datos | Comprobación técnica de cuándo se actualizaron y si hubo errores; sin panel de administración |
+| Público principal | Aficionados españoles que siguen uno o varios equipos y desean ponerse al día de forma rápida y personalizada. |
+| Público secundario | Aficionados interesados en comparaciones e histórico, sujetos a los datos disponibles. |
+| Núcleo de producto | Seguir un equipo y comprender resultados, calendario, jugadores, estadísticas y evolución. |
+| Problema propuesto | Información dispersa entre fuentes, en inglés y con horario estadounidense. |
+| Diferenciador A | Resumen de cambios después de cada partido mediante reglas y plantillas, sin IA de pago; posición solo si existe clasificación actualizada. |
+| Diferenciador D | Evolución visual del equipo y jugadores con un alcance inicial reducido. |
+| Apoyo C | Explicaciones breves de las estadísticas mostradas. |
 
-### 5.2 Para después [Diego]
+Las hipótesis generales no implican que todas esas funciones deban entrar en el primer incremento.
 
-- Cuentas de usuario.
-- Seguir varios equipos.
-- Ficha de jugador.
-- Clasificación y posición.
-- Gráficas de jugadores.
-- Comparador e histórico.
-- Alertas.
-- Modo sin spoilers.
-- Calendario `.ics`.
-- Noticias.
+## 5. Alcance y requisitos
 
-## 6. Exposición [Diego]
+### 5.1 Candidatos registrados al MVP
 
-- **Prioridad:** una versión funcional en local.
-- **Demo privada en Internet: opcional y condicionada.** Sería para enseñarla a los participantes de la validación, solo si es viable con alojamiento gratuito, acceso restringido y las condiciones de uso de la fuente elegida. Ningún servicio está aprobado.
-- Si la demo no puede usar datos reales, usará **datos ficticios claramente identificados**, y se mantendrá separada de la validación de hipótesis.
-- Publicación abierta: no prevista.
+Selección de un equipo sin registro; calendario y resultados en hora de España; ficha de equipo y plantilla condicionada a los datos; box score; panel de cambios; una gráfica de evolución; explicaciones mínimas; comprobación técnica de actualización y errores. Son candidatos, no compromisos.
 
-## 7. Datos
+Ampliaciones registradas: cuentas, varios equipos, fichas de jugador, clasificación, gráficas de jugadores, comparador e histórico, alertas, modo sin spoilers, calendario `.ics` y noticias. No están aprobadas para implementar.
 
-### 7.1 Estrategia [Diego]
+### 5.2 Primer incremento propuesto
 
-- **Datos reales primero.**
-- La **primera tarea de ejecución** será comprobar pronto la viabilidad técnica (calendario, resultados y box scores) **y** las condiciones de uso de la fuente, antes de construir el resto sobre ella.
-- **nba_api es una opción por probar, no una decisión.** No se da por viable ninguna integración hasta haberla probado.
-- Si la fuente falla o tiene limitaciones importantes, se revisan las alternativas y el alcance.
-- Los datos ficticios son un recurso de apoyo para pruebas, o una alternativa explícita; no son el punto de partida.
+`REQUISITOS.md` concreta una propuesta más pequeña: listado diario de partidos finalizados de la temporada actual y detalle con resultado, parciales y estadísticas individuales. Incluye reglas propuestas sobre fechas en España peninsular y consulta bajo demanda.
 
-### 7.2 Hechos y evidencia (consultados el 2026-10-31)
+Estado: borrador. Debe conciliarse con los candidatos anteriores antes de aprobar una línea base. Su incorporación no elimina las hipótesis de producto ni convierte todos los requisitos en decisiones.
 
-Cada punto cita su evidencia. `VIABILIDAD_DATOS.md` amplía el detalle, pero es un borrador generado con IA y **todavía no está disponible en el repo**.
+## 6. Validación y privacidad
 
-- **nba_api**: según su [README](https://github.com/swar/nba_api) (consultado el 2026-10-31), es un cliente Python no oficial, no requiere clave, advierte que stats.nba.com no responde a muchas IP de nube e indica que los datos están sujetos a los Términos de Uso de NBA.com. [Hecho]
-- **nba_api y lesiones:** no aparece ningún endpoint de lesiones en su [guía de endpoints](https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoint_guide.md) (2026-10-31). Es una conclusión por ausencia. [Pendiente de verificación]
-- **balldontlie**: según su [documentación](https://docs.balldontlie.io/) (consultada el 2026-10-31), el plan gratuito (5 peticiones/min) solo incluye equipos, jugadores y partidos; las estadísticas por partido, los box scores, la clasificación, las lesiones y los mapas de tiros son de pago. [Hecho]
-- **Pruebas del 31-10-2026:** 3 consultas a nba_api desde un sandbox en la nube, ejecutadas por la IA; según su registro, las 3 fallaron. Evidencia: `registro_pruebas.json` (22:14 UTC), **todavía no disponible en el repo**. **No es concluyente** para mi PC ni para otro entorno. [Pendiente de verificación]
+- Priorizar participantes reales, sin número confirmado. No presentar personajes ficticios como evidencia.
+- Registrar qué hipótesis quedan apoyadas, cuestionadas o pendientes y los límites de la muestra.
+- Preparar el guion en paralelo a la búsqueda de participantes.
+- Propuesta: minimizar notas personales, explicar su finalidad y revisar consentimiento, acceso, conservación y anonimización antes de recoger datos. Estas medidas no garantizan por sí solas cumplimiento del RGPD.
 
-### 7.3 Condiciones de uso [Pendiente]
+No se acredita en esta revisión la realización de entrevistas ni una validación externa.
 
-Según los [Términos de Uso de NBA.com](https://www.nba.com/termsofuse) (versión del 13-07-2026, consultada el 2026-10-31), las estadísticas:
-- exigen atribución visible a NBA.com;
-- solo pueden usarse para noticias o fines privados no comerciales;
-- no pueden usarse, sin consentimiento, en servicios con una base de datos de estadísticas completas y actualizadas regularmente, ni en servicios que muestren el partido jugada a jugada en vivo, casi en vivo o archivado.
+## 7. Datos y exposición
 
-**Que el uso sea local o una demo privada no lo convierte en permitido.** Queda pendiente aclarar:
-- Si guardar calendario, resultados y box scores de una temporada encaja en la prohibición de "base de datos completa y actualizada".
-- Si enseñar la demo a los participantes cuenta como uso privado o como exhibición pública.
-- Si existen condiciones específicas para el acceso automatizado a stats.nba.com y cdn.nba.com fuera de esa página.
-- Qué condiciones tendría cualquier alternativa que se estudie.
+### 7.1 Estrategia registrada
 
-Esto no es asesoramiento jurídico.
+Prioridad de datos reales con comprobación temprana de viabilidad técnica y condiciones de uso. `nba_api` es una opción por evaluar, no una integración aprobada. Python queda condicionado a la fuente. No existe un importador separado aprobado. Los datos ficticios sirven como apoyo de pruebas o alternativa explícita y deben identificarse.
 
-## 8. Tecnologías [Diego]
+### 7.2 Evidencia y antecedentes
 
-| Categoría | Contenido |
+La versión anterior contiene investigación sobre `nba_api`, balldontlie y términos de NBA.com, además de referencias a tres pruebas fallidas desde un sandbox en la nube del 31/10/2026. Sus registros externos no se han incorporado ni revisado en esta actualización. Se conserva la referencia histórica en el apartado 11; esos antecedentes no se revalidan aquí ni permiten concluir viabilidad en el equipo local.
+
+No se afirma que no existan pruebas locales posteriores: su resultado y entorno requieren contrastar el registro correspondiente. No se acreditan en esta revisión versiones de herramientas, partidos concretos, consultas externas enviadas ni autorizaciones recibidas.
+
+### 7.3 Condiciones pendientes
+
+Antes de aprobar una fuente deben aclararse condiciones de acceso automatizado, visualización, atribución y almacenamiento para el uso previsto. También deben revisarse las restricciones sobre estadísticas completas, actualización y datos en directo. No se reproducen como condiciones vigentes conclusiones jurídicas no revalidadas en esta sesión.
+
+El uso local o privado no constituye por sí mismo permiso. Este documento no es asesoramiento jurídico.
+
+### 7.4 Exposición y recursos
+
+- Versión local prioritaria. Publicación abierta no prevista.
+- Demo privada opcional, condicionada a coste, acceso restringido y condiciones de uso. Alojamiento pendiente de aprobación.
+- Si fuera necesario usar datos ficticios en una demo, identificarlos y no confundir esa demostración con validación de datos reales.
+- Criterio registrado de partida: nombre propio, sin logos ni marcas NBA o de equipos. Cualquier cambio requiere decisión expresa y revisión de derechos.
+
+## 8. Tecnología y arquitectura provisional
+
+| Área | Criterio registrado |
 |---|---|
-| Stack elegido para este proyecto (no imprescindible para cualquier producto similar) | Java + Spring Boot · PostgreSQL · React + TypeScript · Git y GitHub |
-| Aprendizaje prioritario, incorporado pronto y de forma progresiva | Docker Compose · GitHub Actions |
-| Condicionado | Python, solo si la fuente o biblioteca elegida lo necesita |
-| Desde el principio | Seguridad mínima: validación de entradas, secretos fuera del repo, cabeceras, protección de la comprobación técnica |
-| Aplazado | El sistema de cuentas (no cualquier uso de Spring Security) |
-| Después del MVP | Kubernetes |
-| Fuera del alcance actual (no descartado para siempre) | JWT · microservicios · dos proveedores · PostgreSQL en Kubernetes |
-| Herramientas de trabajo | VS Code · GitHub Desktop |
-| Documentación | Markdown + Mermaid en `/docs` |
-| [Pendiente] (no aprobado) | Fuentes y bibliotecas de acceso a datos · proveedores de datos · alojamiento de la demo · versiones concretas (incluida Java 21 o 25) |
+| Backend | Java y Spring Boot; aplicación única organizada en módulos. |
+| Datos | PostgreSQL como tecnología de partida; función concreta y persistencia pendientes de diseño. |
+| Frontend | React y TypeScript. |
+| Aprendizaje prioritario | Docker Compose y GitHub Actions, incorporados de manera progresiva. |
+| Condicionado | Python si lo requiere la integración elegida. |
+| Seguridad desde el inicio | Validación de entradas, secretos fuera del repositorio, cabeceras y protección de comprobaciones técnicas. |
+| Aplazado | Sistema de cuentas; no implica excluir cualquier uso de Spring Security. |
+| Fuera del alcance actual | JWT, microservicios, dos proveedores y PostgreSQL en Kubernetes; no son descartes permanentes. |
+| Sin aprobar | Versiones concretas, fuentes, bibliotecas de acceso a datos, proveedores y alojamiento. |
 
-## 9. Arquitectura de partida [Diego]
-
-Punto de partida: **una aplicación Spring Boot única organizada en módulos**. La integración de los datos se concretará después de probar la fuente; **no hay aprobado un importador separado**.
+Esquema conceptual provisional, no arquitectura implementada ni flujo de persistencia aprobado:
 
 ```mermaid
 flowchart LR
-  SRC["Fuente de datos<br/>(pendiente de elegir)"] --> INT["Integración de datos<br/>(forma pendiente)"]
-  INT --> DB[("PostgreSQL")]
-  APP["Aplicación Spring Boot<br/>(módulos)"] --> DB
-  WEB["React + TypeScript"] --> APP
+    F[Fuente pendiente de aprobación] --> I[Integración por definir]
+    I --> B[Spring Boot modular]
+    W[React y TypeScript] --> B
+    B -. Persistencia por justificar .-> P[(PostgreSQL)]
 ```
 
-## 10. Forma de trabajar
+## 9. Documentación y copias
 
-### 10.1 Documentación y copias [Diego, 2026-11-01]
+- GitHub, en `DiegoGSUJA/boxscore`, es la referencia documental. Estar en el repositorio no aprueba propuestas.
+- Los documentos de contexto y estado del Project de Perplexity son copias de respaldo. Si difieren, prevalece GitHub.
+- No hay sincronización automática ni actualización obligatoria al terminar cada sesión.
+- Contexto y estado se modifican cuando se solicita, mostrando antes el texto y esperando confirmación.
+- Tras cambiarlos, indicar que las copias previas del Project quedan desactualizadas. No sustituirlas sin autorización expresa.
+- Si GitHub no puede consultarse, usar las copias del Project avisando de que su vigencia no está comprobada e indicando el commit de referencia si se conoce.
 
-- GitHub (`/docs` del repo `DiegoGSUJA/boxscore`) es la fuente de referencia para la documentación aprobada y el estado registrado del proyecto.
-- Estar en GitHub no convierte una hipótesis o propuesta en decisión aprobada: cada contenido conserva su etiqueta.
-- Los archivos `PROYECTO_CONTEXTO.md` y `ESTADO_PROYECTO.md` del Project de Perplexity son copias de respaldo. Si difieren de GitHub, prevalece el repositorio.
-- No hay sincronización automática ni actualizaciones obligatorias al terminar cada sesión. Los documentos se actualizan solo cuando Diego lo solicita, revisando antes el texto.
-- Cuando Diego autorice un cambio en cualquiera de estos dos documentos, la IA indicará si las copias del Project quedan desactualizadas. Sustituirlas requiere autorización expresa, que puede darse en la misma petición.
-- Si no se puede consultar GitHub, se usan las copias del Project, avisando de que su vigencia no está comprobada e indicando el commit de referencia si se conoce.
+Siguen como propuestas sin aprobar: issues como unidad de trabajo, GitHub Projects como vista, campo de horas reales, trazabilidad necesidad → requisito → issue → PR → prueba y cambios de alcance mediante etiqueta específica.
 
-### 10.2 Resto de la organización [Propuesta, no aprobada]
+## 10. Riesgos y pendientes
 
-- Issues para el trabajo y GitHub Projects solo como vista.
-- Campo "Horas reales" en las issues.
-- Trazabilidad necesidad → requisito → issue → PR → prueba.
-- Cambios de alcance mediante issues con la etiqueta `cambio-alcance`.
-- Reglas de uso de IA.
-
-## 11. Pendientes
-
-- Revisar **una a una** las correcciones C1-C18 y E1-E7 propuestas en `PLAN_MAESTRO.md`. **No se aplican en bloque.** Este documento refleja parcialmente algunos de sus temas (ver `ESTADO_PROYECTO.md`, sección "Correcciones reflejadas parcialmente"). Ninguna está resuelta del todo.
-- Decidir si `VIABILIDAD_DATOS.md`, `PLAN_MAESTRO.md` y `registro_pruebas.json` (generados con IA) se guardan en `/docs`. **Todavía no están disponibles en el repo.**
-- Guion de entrevista y búsqueda de participantes.
-- Comprobación temprana de datos reales y de las condiciones de uso.
-- Definición de "terminado" e hitos propios.
-- Revisar el contenido heredado del Anexo A.
-
-## 12. Riesgos [Propuesta, pendiente de revisar]
-
-Esta tabla **no es una decisión aprobada**. Fusiona los riesgos de la versión 1 con lo decidido.
-
-| Riesgo | Impacto | Mitigación propuesta |
-|---|---|---|
-| La fuente falla, se bloquea o cambia | Alto | Comprobarlo pronto; BD propia; revisar alternativas y alcance |
-| Condiciones de uso incompatibles con el uso previsto | Alto | Revisarlas antes de construir; datos ficticios identificados en la demo si es necesario |
-| Alcance excesivo, al no haber fecha límite | Alto | Candidatos pequeños; registro del tiempo real; hitos propios |
-| Datos personales (entrevistas) | Medio | Medidas propuestas (sección 4); revisar el RGPD según los datos reales |
-| Código de IA sin entender | Medio | Revisión, pruebas y explicación propia de cada cambio |
-| Bloqueo de IP de nube | Medio | Probar desde el entorno real |
-
----
-
-## Anexo A. Contenido heredado de la versión 1 (sin revisar)
-
-> Se copia **literalmente** de la versión 1 (commit `d7895e2`) para no perder información. **Todo el anexo es contenido histórico pendiente de revisión: no contiene decisiones ni instrucciones vigentes.**
-> - A.1 (v1 §5) · pendiente de C11
-> - A.2 (v1 §7) · propuesta
-> - A.3 (v1 §8) · pendiente de C17
-> - A.4 (v1 §9) · pendiente de C18
-> - A.5 (v1 §10) · histórico; sustituido por la sección 10.1
-> - A.6 (v1 §2) y A.7 (v1 §3) · ideas iniciales de producto y fases; **no son requisitos**. Lo elegido está en las secciones 3 y 5.
->
-> Las secciones v1 §1, §4, §6 y §11 se sustituyen por las secciones 1, 7, 8 y 12 de esta versión. Su texto sigue disponible en el historial de Git (commit `d7895e2`).
-
-### A.1 (v1) Actualizacion tras cada partido
-1. Job programado (Spring @Scheduled o CronJob de Kubernetes) consulta el calendario 1-2 veces al dia.
-2. En dias de partido, otro job consulta el estado cada pocos minutos.
-3. Al pasar a "finalizado", se descarga el box score definitivo y se guarda.
-4. Se recalculan derivados: medias, rachas, clasificacion, records.
-5. Se envian alertas a usuarios que siguen a esos equipos.
-
-### A.2 (v1) Estructura del repo (objetivo; se crea poco a poco)
-```
-boxscore/
-  README.md  AGENTS.md  SECURITY.md  CHANGELOG.md  LICENSE
-  docs/
-    PROYECTO_CONTEXTO.md  ESTADO_PROYECTO.md
-    00-contexto/  01-entrevistas/  02-requisitos/  03-presupuesto/
-    04-diseno-ux/  05-arquitectura/  06-seguridad/  07-pruebas/
-    08-operaciones/  adr/
-  backend/  ingestor/  frontend/  deploy/  .github/workflows/
-```
-Nota: Git no guarda carpetas vacias; se crean al anadir su primer archivo.
-
-### A.3 (v1) Flujo con Perplexity Pro
-- Project (antes Spaces) llamado "Boxscore" con instrucciones del stack y estas reglas. Subir este archivo y ESTADO_PROYECTO.md.
-- Un hilo por fase: 00 Contexto, 01 Entrevista, 02 Requisitos, 03 Presupuesto, 04 Diseno, 05 Arquitectura, 06 Seguridad, 07 Datos y normativa.
-- Deep Research para normativa (RGPD), comparativas y fuentes de datos; Labs para presupuesto en hoja de calculo; busqueda normal para el resto.
-- Cada documento aprobado: guardarlo como .md, subirlo al Project y commitearlo en /docs.
-- Al terminar cada sesion: pedir actualizar ESTADO_PROYECTO.md (ver seccion 10).
-
-### A.4 (v1) Checklist de cosas a plantearse
-#### Alcance y negocio
-- [ ] Definicion de MVP y de "terminado" por fase.
-- [ ] Cliente: grupo real de aficionados (propuesto, minimo 3 personas de perfiles distintos) o ficticio.
-- [ ] Fecha limite y horas por semana disponibles.
-- [ ] Metodologia: Scrum ligero, sprints de 1-2 semanas.
-- [ ] Presupuesto: horas por requisito + 20-30 % de margen; costes de infraestructura.
-- [ ] Criterios de evaluacion de la asignatura/TFG, si aplica.
-#### Legal y datos
-- [ ] RGPD/LOPDGDD: base legal, politica de privacidad, minimizar datos, derechos de acceso/borrado.
-- [ ] Cookies (LSSI) y accesibilidad WCAG 2.1 AA.
-- [ ] Licencia del repo y dependencias; terminos de uso de cada API antes de publicar.
-- [ ] Contenido de terceros: noticias propias o solo titulares con enlace.
-#### Tecnico
-- [ ] Prueba de concepto de datos: clave de balldontlie + llamadas de prueba; nba_api scoreboard; repetir dentro de Docker.
-- [ ] Modelo de datos y unificacion de IDs entre proveedores.
-- [ ] Zona horaria (UTC en BD, Europe/Madrid en UI); idioma espanol primero.
-- [ ] Autenticacion: registro, verificacion de email, recuperacion de contrasena, refresh tokens, MFA opcional.
-- [ ] Secretos en variables de entorno/Kubernetes Secrets, nunca en el repo.
-- [ ] Entornos dev/test/prod, backups y restauracion de la BD.
-- [ ] Pruebas: unitarias, integracion con Testcontainers, E2E; analisis estatico; Dependabot.
-- [ ] Observabilidad, rendimiento (cache, indices, paginacion), emails (Mailpit en local), almacenamiento de archivos y permisos de descarga.
-#### Proceso y vibe coding
-- [ ] AGENTS.md con stack, convenciones y comandos de build/test.
-- [ ] Reglas para codigo de IA: revisar, entender, escribir tests, no pegar secretos en prompts.
-- [ ] Trazabilidad RF-001 -> issue -> PR -> test.
-- [ ] ADRs: dos proveedores de datos, Python para ingesta, BD como fuente de verdad.
-- [ ] Gestion de riesgos y plan de mantenimiento.
-
-### A.5 (v1) Como mantener el historico (regla de oro)
-Al final de cada sesion con cualquier IA:
-"Actualiza ESTADO_PROYECTO.md: marca lo hecho, anade decisiones nuevas, problemas abiertos y siguientes pasos. Devuelvelo completo en Markdown."
-Despues sustituir el archivo en el Project de Perplexity y en el repo (commit "docs: actualiza estado").
-Prompt de arranque de cada conversacion nueva:
-"Lee PROYECTO_CONTEXTO.md y ESTADO_PROYECTO.md. Resume en 5 lineas donde estamos y propon el siguiente paso."
-
-### A.6 (v1) Idea del producto
-Boxscore: portal informativo de baloncesto (NBA), NO es un juego ni fantasy, con cuentas de usuario y zonas.
-- Zona publica: calendario, resultados, clasificacion, fichas de equipos y jugadores.
-- Usuario registrado: elige su equipo favorito y obtiene el panel "Mi equipo".
-- Editor: publica noticias y analisis (fase posterior).
-- Administrador: usuarios, roles, contenido, estado de la sincronizacion de datos.
-- Descargas: CSV de estadisticas, PDF de informes, calendario .ics.
-- Futuro: video/streaming (solo enlaces oficiales), push, app movil.
-- Nombre propio sin logos ni marcas de la NBA ni de los equipos.
-
-#### Panel "Mi equipo" (el corazon del MVP)
-- Proximo partido con cuenta atras en hora de Espana.
-- Ultimos 5 resultados y racha.
-- Plantilla, lesionados, lideres del equipo.
-- Posicion en la conferencia y camino a playoffs.
-- Calendario completo del equipo.
-
-#### Ideas con "chicha" (por fases)
-- Fichas de jugador con historia: temporadas, carrera, mejor partido, comparador de 2-4 jugadores, records historicos.
-- Cara a cara entre equipos.
-- Alertas por email (partido, record cercano, lesion) y resumen semanal.
-- Modo "sin spoilers".
-- Noticias, comentarios moderados, guias PDF, linea temporal de franquicias.
-
-### A.7 (v1) Fases
-| Fase | Contenido |
+| Riesgo o pendiente | Tratamiento propuesto |
 |---|---|
-| 1. MVP | Registro/login, elegir equipo, panel Mi equipo, calendario, resultados, fichas de jugador, exportar CSV |
-| 2. Chicha | Comparador, records, estadisticas avanzadas, alertas por email, .ics |
-| 3. Contenido | Zona editor, noticias, comentarios, PDF |
-| 4. Extra | Marcador en vivo, modo sin spoilers, video, push |
+| Alcance excesivo | Aprobar un incremento pequeño y registrar esfuerzo real. |
+| Fuente inestable o incompatible | Verificar pronto técnica y condiciones; revisar alcance o alternativas. |
+| Restricciones de nube | No extrapolar resultados entre entornos. |
+| Evidencia insuficiente | Incorporar registros revisados sin secretos ni datos personales innecesarios. |
+| Privacidad en entrevistas | Revisar datos recogidos, finalidad, conservación y acceso. |
+| Código generado sin comprensión | Revisión, explicación propia y pruebas de cada cambio. |
+| Requisitos sin conciliar | Revisar diferencias antes de aprobar implementación. |
+
+Siguen pendientes la definición de terminado, hitos propios, entrevistas y la revisión individual de C1–C18 y E1–E7. No se declaran resueltas en bloque. `PLAN_MAESTRO.md`, `VIABILIDAD_DATOS.md` y `registro_pruebas.json` no están incorporados mediante esta actualización.
+
+## 11. Histórico y trazabilidad de la consolidación
+
+La versión 3 completa, incluidos sus anexos heredados y referencias originales, se conserva en el commit anterior a esta actualización:
+
+- Commit: `6855fdd3e6e4b5489fa3005a8ed61c6fa5653307`.
+- Ruta: `docs/PROYECTO_CONTEXTO.md`.
+- SHA del contenido anterior: `af03e880b0f6c6c0845 83 5c4a662dd3c2387b806`.
+
+La referencia válida para recuperar el histórico es el commit y la ruta. Esta consolidación sustituye la reproducción de anexos por esa referencia para separar contexto vigente y material heredado; no aprueba los anexos. Las referencias antiguas a `d7895e2` y `ff2907c` permanecen en ese histórico.
+
+## 12. Asistencia automatizada
+
+Se ha utilizado asistencia de IA para estructurar y redactar documentación. La responsabilidad de revisión y aprobación corresponde al responsable del proyecto. La asistencia no acredita hechos externos ni sustituye pruebas o revisión de condiciones de uso.
